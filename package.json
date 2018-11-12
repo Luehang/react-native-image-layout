@@ -1,0 +1,55 @@
+{
+  "name": "react-native-image-layout",
+  "version": "1.0.0",
+  "description": "An easy and simple to use React Native component to render a custom masonry layout for remote images and displayed on a custom interactive image viewer.  Includes animations and support for both iOS and Android.",
+  "main": "index.js",
+  "author": "Lue Hang <lue_hang@hotmail.com> (https://luehangs.site)",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "lint": "./node_modules/.bin/eslint index.js src/"
+  },
+  "keywords": [
+    "react-native-image-layout",
+    "react-native",
+    "gallery",
+    "images",
+    "masonry",
+    "album",
+    "camera roll",
+    "pictures"
+  ],
+  "homepage": "https://github.com/Luehang/react-native-image-layout",
+  "bugs": "https://github.com/Luehang/react-native-image-layout/issues",
+  "repository": {
+    "url": "https://github.com/Luehang/react-native-image-layout",
+    "type": "git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "data.task": "3.1.2",
+    "lodash.differenceby": "4.8.0",
+    "lodash.isequal": "4.5.0",
+    "react": "16.6.0-alpha.8af6728",
+    "react-native": "0.57.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "10.0.1",
+    "babel-jest": "23.6.0",
+    "eslint": "5.9.0",
+    "eslint-plugin-flowtype": "3.2.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jsx-a11y": "6.1.2",
+    "eslint-plugin-react": "7.11.1",
+    "eslint-plugin-react-native": "3.5.0",
+    "jest": "23.6.0",
+    "metro-react-native-babel-preset": "0.49.0",
+    "react-test-renderer": "16.6.0-alpha.8af6728"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
