@@ -76,10 +76,6 @@ function idGenerator() {
 | `onPageSingleTapConfirmed`    | `Function`        | Fired after a single tap on page in gallery. | |
 | `onPageLongPress`             | `Function`        | Fired after a long press on page in gallery. | |
 
-[comment]: <> (TODO: add masonry header and footer that flows with the ListView)
-[comment]: <> (| `renderMasonryHeader`         | `Function`        | Custom function to render masonry list header.  This function must return a React Component. | |)
-[comment]: <> (| `renderMasonryFooter`         | `Function`        | Custom function to render masonry list footer.  This function must return a React Component. | |)
-
 ## Scroll State and Events
 
 * `onPageScroll` : (event) => {}. 
