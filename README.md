@@ -21,6 +21,12 @@ Type in the following to the command line to install the dependency.
 $ npm install --save react-native-image-layout
 ```
 
+or
+
+```bash
+$ yarn add react-native-image-layout
+```
+
 ## Usage Example
 
 Add an ``import`` to the top of the file.  At minimal, declare the ``ImageLayout`` component in the ``render()`` method providing an array of data for the ``images`` prop.
