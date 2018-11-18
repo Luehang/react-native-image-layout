@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Easing, Platform, Animated, Image, View, StyleSheet, Dimensions } from "react-native";
+import GallerySwiper from "react-native-gallery-swiper";
 import PropTypes from "prop-types";
 import ViewerBackground from "./ViewerBackground";
 import ScrollSpacerView from "./ScrollSpacerView";
@@ -10,8 +11,6 @@ import ImageTransitionView from "./ImageTransitionView";
 // import { getImageMeasurements } from "./Utils";
 
 import type { ImageMeasurements } from "./Utils";
-
-import Gallery from "./../Gallery";
 
 class Footer extends React.Component {
   static propTypes = {
@@ -273,7 +272,7 @@ class ImageViewer extends React.Component {
                 })
               }}
             >
-              <Gallery
+              <GallerySwiper
                 style={{ flex: 1, backgroundColor: "transparent" }}
                 images={this.props.images}
                 initialPage={this.props.galleryInitialIndex}
@@ -384,7 +383,7 @@ class ImageViewer extends React.Component {
             galleryIndex={galleryIndex}
             onClose={onClose}
           />
-          <Gallery
+          <GallerySwiper
             style={{ flex: 1, backgroundColor: "transparent" }}
             images={this.props.images}
             initialPage={this.props.galleryInitialIndex}

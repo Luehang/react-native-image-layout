@@ -37,6 +37,7 @@
   },
   "main": "index.js",
   "dependencies": {
+    "react-native-gallery-swiper": "^1.0.2",
     "data.task": "^3.1.2",
     "lodash.differenceby": "^4.8.0",
     "lodash.isequal": "^4.5.0",
