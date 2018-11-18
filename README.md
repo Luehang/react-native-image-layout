@@ -4,6 +4,8 @@
 
 ![react-native-image-layout](https://www.luehangs.site/videos/react-native-image-layout-demo.gif)
 
+Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LH BLOG](https://www.luehangs.site).
+
 - [Install](#install)
 - [Usage Example](#usage-example)
 - [API](#api)
