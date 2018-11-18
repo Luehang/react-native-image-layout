@@ -134,28 +134,6 @@ $ cd react-native-image-layout/example/
 	3. emulator running in separate terminal
 	4. npm run android
 
-## Contributing
-
-Perform steps 1-2:
-
-1. [Clone the Repo](#1-clone-the-repo)
-2. [Install](#2-install)
-
-### 1. Clone the Repo
-
-**Clone** `react-native-image-layout` locally. In a terminal, run:
-
-```bash
-$ git clone https://github.com/Luehang/react-native-image-layout.git react-native-image-layout
-```
-
-### 2. Install
-
-```bash
-$ cd react-native-image-layout/
-$ npm install
-```
-
 ## License
 
 MIT licensed, as found in the LICENSE file.
