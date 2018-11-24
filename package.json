@@ -40,9 +40,11 @@
     "react-native-gallery-swiper": "^1.0.2",
     "data.task": "^3.1.2",
     "lodash.differenceby": "^4.8.0",
-    "lodash.isequal": "^4.5.0",
-    "react": "^16.6.0-alpha.8af6728",
-    "react-native": "^0.57.4"
+    "lodash.isequal": "^4.5.0"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
