@@ -6,6 +6,8 @@
 
 Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LH BLOG](https://www.luehangs.site).
 
+Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-native-gallery-swiper).
+
 ## Index
 
 - [Install](#install)
@@ -14,7 +16,6 @@ Learn more about React Native with project examples along with Cyber Security an
 - [Props](#props)
 - [Scroll State and Events](#scroll-state-and-events)
 - [Example Project](#example-project)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Install
@@ -41,12 +42,12 @@ import ImageLayout from "react-native-image-layout";
 //...
 <ImageLayout
     images={[
-        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg"},
-        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"},
-        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-women-beauty-40901.jpg"},
-        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg"},
-        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg"},
-        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg"},
+        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg" },
+        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg" },
+        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-women-beauty-40901.jpg" },
+        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg" },
+        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg" },
+        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg" },
     ]}
 />
 //...
@@ -86,7 +87,9 @@ function idGenerator() {
 | `onPageSingleTapConfirmed`    | `Function`        | Fired after a single tap on page in gallery. | |
 | `onPageLongPress`             | `Function`        | Fired after a long press on page in gallery. | |
 
-## Scroll State and Events
+## Scroll State and Events for Gallery
+
+Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-native-gallery-swiper).
 
 * `onPageScroll` : (event) => {}. 
 
