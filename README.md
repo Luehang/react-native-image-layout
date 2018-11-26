@@ -2,6 +2,8 @@
 
 > An easy and simple to use React Native component to render a custom masonry layout for remote images and displayed on a custom interactive image viewer.  Includes animations and support for both iOS and Android.
 
+<a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
+
 ![react-native-image-layout](https://www.luehangs.site/videos/react-native-image-layout-demo.gif)
 
 Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LH BLOG](https://www.luehangs.site).
@@ -41,16 +43,38 @@ Add an ``import`` to the top of the file.  At minimal, declare the ``ImageLayout
 import ImageLayout from "react-native-image-layout";
 
 //...
-<ImageLayout
-    images={[
-        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg" },
-        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg" },
-        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-women-beauty-40901.jpg" },
-        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg" },
-        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg" },
-        { id: idGenerator(), uri: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg" },
-    ]}
-/>
+render() {
+    return (
+        <ImageLayout
+            images={[
+                {
+                    id: idGenerator(),
+                    uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg"
+                },
+                {
+                    id: idGenerator(),
+                    uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"
+                },
+                {
+                    id: idGenerator(),
+                    uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-women-beauty-40901.jpg"
+                },
+                {
+                    id: idGenerator(),
+                    uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg"
+                },
+                {
+                    id: idGenerator(),
+                    uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg"
+                },
+                {
+                    id: idGenerator(),
+                    uri: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg"
+                },
+            ]}
+        />
+    );
+}
 //...
 
 function idGenerator() {
