@@ -12,28 +12,27 @@ import ImageViewer from "./ImageViewer";
 import Masonry from "./Masonry";
 
 class ImageLayout extends React.Component {
-  // TODO: fix iOS page vertical swipe on close flickering bug
-  // TODO: fix iOS page vertical swipe on close animations
-  // TODO: fix iOS page horizontal swipe flickering images
-  // TODO: fix Android masonry not rendering some images
+  // TODO: full animations for Android
   _imageMeasurers: { [imageId: string]: () => void }
   _imageSizeMeasurers: { [imageId: string]: () => void }
 
   static propTypes = {
     images: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
+        id: PropTypes.string,
         uri: PropTypes.string.isRequired
       }).isRequired
     ).isRequired,
 
     // Masonry props
     columns: PropTypes.number,
-    masonryListViewProps: PropTypes.object,
     spacing: PropTypes.number,
+    initialColToRender: PropTypes.number,
+    initialNumInColsToRender: PropTypes.number,
     sorted: PropTypes.bool,
+    masonryFlatListColProps: PropTypes.object,
     // TODO: add masonry header and footer that
-    // flows with the ListView
+    // flows with the FlatList
     // renderMasonryHeader: PropTypes.func,
     // renderMasonryFooter: PropTypes.func,
     imageContainerStyle: PropTypes.object,
@@ -132,12 +131,14 @@ class ImageLayout extends React.Component {
           bricks={this.props.images}
           columns={this.props.columns}
 
-          masonryListViewProps={this.props.masonryListViewProps}
+          masonryFlatListColProps={this.props.masonryFlatListColProps}
           sorted={this.props.sorted}
           // TODO: add masonry header and footer that
-          // flows with the ListView
+          // flows with the FlatList
           // renderMasonryHeader={this.props.renderMasonryHeader}
           // renderMasonryFooter={this.props.renderMasonryFooter}
+          initialColToRender={this.props.initialColToRender}
+					initialNumInColsToRender={this.props.initialNumInColsToRender}
           imageContainerStyle={this.props.imageContainerStyle}
           renderIndividualMasonryHeader={this.props.renderIndividualMasonryHeader}
           renderIndividualMasonryFooter={this.props.renderIndividualMasonryFooter}

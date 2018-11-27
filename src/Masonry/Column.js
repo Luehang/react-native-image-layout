@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, FlatList } from "react-native";
 import PropTypes from "prop-types";
-import Brick from "./Brick";
+import ImageCell from "./ImageCell";
 import styles from "./styles";
 
 // Takes props and returns a masonry column
@@ -9,9 +9,11 @@ export default class Column extends Component {
 	static propTypes = {
 		data: PropTypes.array,
 		columns: PropTypes.number,
+		initialNumInColsToRender: PropTypes.number,
 		parentDimensions: PropTypes.object,
 		columnKey: PropTypes.string,
 		imageContainerStyle: PropTypes.object,
+		spacing: PropTypes.number,
 
 		onPressImage: PropTypes.func.isRequired,
 		displayImageViewer: PropTypes.bool.isRequired,
@@ -123,7 +125,7 @@ export default class Column extends Component {
 		};
 
 		return (
-			<Brick
+			<ImageCell
 				{...props}
 
 				key={item.uri}
@@ -158,6 +160,8 @@ export default class Column extends Component {
 					key={this.props.columnKey}
 					data={this.state.images}
 					keyExtractor={this._keyExtractor}
+					initialNumToRender={this.props.initialNumInColsToRender}
+					removeClippedSubviews={true}
 					renderItem={this._renderBrick}
 				/>
 			</View>

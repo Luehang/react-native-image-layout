@@ -1,42 +1,26 @@
-import { View, ListView, Dimensions } from "react-native";
+import { View, FlatList, Dimensions } from "react-native";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import isEqual from "lodash.isequal";
 import differenceBy from "lodash.differenceby";
+
 import { resolveImage } from "./model";
 import Column from "./Column";
 import styles from "./styles";
 
 const deviceWidth = Dimensions.get("window").width;
 
-// assignObjectColumn :: Number -> [Objects] -> [Objects]
-export const assignObjectColumn = (nColumns, index, targetObject) => ({...targetObject, ...{ column: index % nColumns }});
-
-// Assigns an `index` property` from bricks={data}` for later sorting.
-// assignObjectIndex :: (Number, Object) -> Object
-export const assignObjectIndex = (index, targetObject) => ({...targetObject, ...{ index }});
-
-// findMinIndex :: [Numbers] -> Number
-export const findMinIndex = (srcArray) => srcArray.reduce((shortest, cValue, cIndex, cArray) => (cValue < cArray[shortest]) ? cIndex : shortest, 0);
-
-// containMatchingUris :: ([brick], [brick]) -> Bool
-export const containMatchingUris = (r1, r2) => isEqual(r1.map(brick => brick.uri), r2.map(brick => brick.uri));
-
-// Fills an array with 0's based on number count
-// generateColumnsHeight :: Number -> Array [...0]
-export const generateColumnHeights = count => Array(count).fill(0);
-
 export default class Masonry extends Component {
 	static propTypes = {
 		bricks: PropTypes.array.isRequired,
 		columns: PropTypes.number,
-		masonryListViewProps: PropTypes.object,
 		spacing: PropTypes.number,
+		initialColToRender: PropTypes.number,
+		initialNumInColsToRender: PropTypes.number,
 		sorted: PropTypes.bool,
 		imageContainerStyle: PropTypes.object,
 		renderIndividualMasonryHeader: PropTypes.func,
 		renderIndividualMasonryFooter: PropTypes.func,
-		refreshControl: PropTypes.element,
+		masonryFlatListColProps: PropTypes.object,
 
 		onPressImage: PropTypes.func.isRequired,
 		displayImageViewer: PropTypes.bool.isRequired,
@@ -51,21 +35,20 @@ export default class Masonry extends Component {
 	static defaultProps = {
 		bricks: [],
 		columns: 2,
+		spacing: 1,
+		initialColToRender: 2,
+		initialNumInColsToRender: 2,
 		sorted: false,
 		imageContainerStyle: {},
-		spacing: 1,
 		priority: "order",
 		onEndReachedThreshold: 25
 	};
 
 	constructor(props) {
 		super(props);
-		// Assuming users don't want duplicated images, if this is not the case we can always change the diff check
-		this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => !containMatchingUris(r1, r2) });
 		// This creates an array of [1..n] with values of 0, each index represent a column within the masonry
 		const columnHeights = generateColumnHeights(props.columns);
 		this.state = {
-			dataSource: this.ds.cloneWithRows([]),
 			dimensions: {},
 			initialOrientation: true,
 			_sortedData: [],
@@ -78,7 +61,7 @@ export default class Masonry extends Component {
 	}
 
 	componentDidMount() {
-		this.resolveBricks(this.props);
+		this.resolveBricks(this.props.bricks, this.props.columns);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -97,7 +80,7 @@ export default class Masonry extends Component {
 				_resolvedData: [],
 				_columnHeights: generateColumnHeights(nextProps.columns),
 				_uniqueCount
-			}), this.resolveBricks(nextProps));
+			}), this.resolveBricks(nextProps.bricks, nextProps.columns));
 		}
 
 		// TODO: optimize masonry list
@@ -112,11 +95,11 @@ export default class Masonry extends Component {
 		// }
 	}
 
-	resolveBricks({ bricks, columns }, offSet = 0) {
+	resolveBricks(bricks, columns, offSet = 0) {
 		if (bricks.length === 0) {
 			// clear and re-render
 			this.setState(state => ({
-				dataSource: state.dataSource.cloneWithRows([])
+				_sortedData: []
 			}));
 		}
 
@@ -125,6 +108,14 @@ export default class Masonry extends Component {
 		bricks
 			.map((brick, index) => assignObjectColumn(columns, index, brick))
 			.map((brick, index) => assignObjectIndex(offSet + index, brick))
+			.map((brick, index) => {
+				if (!brick.id) {
+					const newBrick = brick;
+					newBrick.id = idGenerator();
+					return newBrick;
+				}
+				return brick;
+			})
 			.map(brick => resolveImage(brick))
 			.map((resolveTask, index) => resolveTask.fork(
 				// eslint-disable-next-line handle-callback-err, no-console
@@ -133,7 +124,6 @@ export default class Masonry extends Component {
 					this.setState(state => {
 						const sortedData = this._insertIntoColumn(resolvedBrick, state._sortedData);
 						return {
-							dataSource: state.dataSource.cloneWithRows(sortedData),
 							_sortedData: sortedData,
 							_resolvedData: [...state._resolvedData, resolvedBrick]
 						};
@@ -198,51 +188,70 @@ export default class Masonry extends Component {
 	};
 
 	_delayCallEndReach = () => {
-		const sortedData = this.state._sortedData;
-		const sortedLength = sortedData.reduce((acc, cv) => cv.length + acc, 0);
-		// Limit the invokes to only when the masonry has
-		// fully loaded all of the content to ensure user fully reaches the end
-		if (sortedLength === this.state._uniqueCount) {
-			this.props.masonryListViewProps.onEndReached
-				? this.props.masonryListViewProps.onEndReached()
-				: null;
-		}
+		// const sortedData = this.state._sortedData;
+		// const sortedLength = sortedData.reduce((acc, cv) => cv.length + acc, 0);
+		// // Limit the invokes to only when the masonry has
+		// // fully loaded all of the content to ensure user fully reaches the end
+		// if (sortedLength === this.state._uniqueCount) {
+			if (this.props.masonryFlatListColProps && this.props.masonryFlatListColProps.onEndReached) {
+				this.props.masonryFlatListColProps.onEndReached();
+			}
+		// }
 	}
 
 	render() {
 		return (
 			<View style={{flex: 1}} onLayout={(event) => this._setParentDimensions(event)}>
-				<ListView
+				<FlatList
 					style={{padding: (deviceWidth / 100) * this.props.spacing / 2, backgroundColor: "#fff"}}
 					contentContainerStyle={styles.masonry__container}
-					enableEmptySections
-					scrollRenderAheadDistance={100}
-					removeClippedSubviews={false}
+					removeClippedSubviews={true}
 					onEndReachedThreshold={this.props.onEndReachedThreshold}
-					{...this.props.masonryListViewProps}
+					{...this.props.masonryFlatListColProps}
 					onEndReached={this._delayCallEndReach}
-					dataSource={this.state.dataSource}
-					renderRow={(data, sectionId, rowID) => (
-						<Column
-							data={data}
-							columns={this.props.columns}
-							parentDimensions={this.state.dimensions}
-							imageContainerStyle={this.props.imageContainerStyle}
-							spacing={this.props.spacing}
-							key={`MASONRY-COLUMN-${rowID}`}
+					initialNumToRender={this.props.initialColToRender}
+					keyExtractor={(item, index) => index.toString()}
+					data={this.state._sortedData}
+					renderItem={({item, index}) => {
+						return (
+							<Column
+								data={item}
+								columns={this.props.columns}
+								initialNumInColsToRender={this.props.initialNumInColsToRender}
+								parentDimensions={this.state.dimensions}
+								imageContainerStyle={this.props.imageContainerStyle}
+								spacing={this.props.spacing}
+								key={`MASONRY-COLUMN-${index}`}
 
-							onPressImage={this.props.onPressImage}
-							displayImageViewer={this.props.displayImageViewer}
-							displayedImageId={this.props.displayedImageId}
-							findImageIndex={this.props.findImageIndex}
+								onPressImage={this.props.onPressImage}
+								displayImageViewer={this.props.displayImageViewer}
+								displayedImageId={this.props.displayedImageId}
+								findImageIndex={this.props.findImageIndex}
 
-							renderIndividualMasonryHeader={this.props.renderIndividualMasonryHeader}
-							renderIndividualMasonryFooter={this.props.renderIndividualMasonryFooter}
-						/>
-					)}
-					refreshControl={this.props.refreshControl}
+								renderIndividualMasonryHeader={this.props.renderIndividualMasonryHeader}
+								renderIndividualMasonryFooter={this.props.renderIndividualMasonryFooter}
+							/>
+						);
+					}}
 				/>
 			</View>
 		);
 	}
 }
+
+// assignObjectColumn :: Number -> [Objects] -> [Objects]
+export const assignObjectColumn = (nColumns, index, targetObject) => ({...targetObject, ...{ column: index % nColumns }});
+
+// Assigns an `index` property` from bricks={data}` for later sorting.
+// assignObjectIndex :: (Number, Object) -> Object
+export const assignObjectIndex = (index, targetObject) => ({...targetObject, ...{ index }});
+
+// findMinIndex :: [Numbers] -> Number
+export const findMinIndex = (srcArray) => srcArray.reduce((shortest, cValue, cIndex, cArray) => (cValue < cArray[shortest]) ? cIndex : shortest, 0);
+
+// Fills an array with 0's based on number count
+// generateColumnsHeight :: Number -> Array [...0]
+export const generateColumnHeights = count => Array(count).fill(0);
+
+// Random unique id generator
+export const idGenerator = () => Math.random().toString(36).substr(2, 9);
