@@ -8,12 +8,12 @@
     "ios": "react-native run-ios"
   },
   "dependencies": {
-    "react": "^16.6.0-alpha.8af6728",
-    "react-native": "^0.57.4",
-    "react-native-image-layout": "^1.0.0"
+    "react": "16.6.1",
+    "react-native": "0.57.5",
+    "react-native-image-layout": "^2.0.0"
   },
   "devDependencies": {
-    "metro-react-native-babel-preset": "^0.49.0",
-    "react-test-renderer": "^16.6.0-alpha.8af6728"
+    "metro-react-native-babel-preset": "0.49.2",
+    "react-test-renderer": "16.6.1"
   }
 }

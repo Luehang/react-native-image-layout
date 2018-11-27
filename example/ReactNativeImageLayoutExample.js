@@ -19,17 +19,7 @@ const platform = Platform.OS;
 
 const backIcon = require("./assets/arrow_back_ios_white_36dp.png");
 
-const X_WIDTH = 375;
-const X_HEIGHT = 812;
-function isIPhoneX() {
-    return (
-        Platform.OS === "ios" &&
-        ((deviceHeight === X_HEIGHT && deviceWidth === X_WIDTH) ||
-        (deviceHeight === X_WIDTH && deviceWidth === X_HEIGHT))
-    );
-}
-
-class ImageGallery extends Component {
+export default class ReactNativeImageLayoutExample extends Component {
     render() {
         return (
             <View
@@ -42,17 +32,19 @@ class ImageGallery extends Component {
                     images={testData}
                     renderIndividualMasonryHeader={(data, index) => {
                         return (
-                            <View style={styles.masonryHeader}>
-                                <Image
-                                    source={{ uri: "https://luehangs.site/images/lue-hang2018-square.jpg" }}
-                                    style={styles.userPic} />
-                                <Text style={styles.userName}>{data.title}</Text>
-                            </View>
+                            <TouchableWithoutFeedback>
+                                <View style={styles.masonryHeader}>
+                                    <Image
+                                        source={{ uri: "https://luehangs.site/images/lue-hang2018-square.jpg" }}
+                                        style={styles.userPic} />
+                                    <Text style={styles.userName}>{data.title}</Text>
+                                </View>
+                            </TouchableWithoutFeedback>
                         );
                     }}
                     renderPageHeader={(image, i, onClose) => {
                         return (
-                            <View style={[styles.statusBarTop, styles.pageHeader]}>
+                            <View style={[styles.statusBarTop, styles.header, styles.pageHeader]}>
                                 <TouchableWithoutFeedback onPress={() => {onClose();}}>
                                     <Image source={backIcon} style={{marginLeft: 10, height: 30, width: 30}} />
                                 </TouchableWithoutFeedback>
@@ -67,6 +59,16 @@ class ImageGallery extends Component {
             </View>
         );
     }
+}
+
+function isIPhoneX() {
+    const X_WIDTH = 375;
+    const X_HEIGHT = 812;
+    return (
+        Platform.OS === "ios" &&
+        ((deviceHeight === X_HEIGHT && deviceWidth === X_WIDTH) ||
+        (deviceHeight === X_WIDTH && deviceWidth === X_HEIGHT))
+    );
 }
 
 const styles = StyleSheet.create({
@@ -88,10 +90,12 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     masonryHeader: {
+        position: "absolute",
+        zIndex: 10,
         flexDirection: "row",
         padding: 5,
         alignItems: "center",
-        backgroundColor: "white"
+        backgroundColor: "transparent"
     },
     pageHeader: {
         flexDirection: "row",
@@ -106,6 +110,9 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginRight: 10
     },
+    userName: {
+        color: "#616161"
+    },
     whiteText: {
         fontWeight: "bold",
         color: "#fafafa"
@@ -119,5 +126,3 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5
     },
 });
-
-export default ImageGallery;
