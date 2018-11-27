@@ -47,30 +47,18 @@ render() {
     return (
         <ImageLayout
             images={[
+                { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg" },
                 {
-                    id: idGenerator(),
-                    uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg"
-                },
-                {
+                    // Version *2.0.0 update (or greater versions): Does not require
+                    // an id for each image object, but is for good practice
+                    // and can be better for performance for API.
                     id: idGenerator(),
                     uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"
                 },
-                {
-                    id: idGenerator(),
-                    uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-women-beauty-40901.jpg"
-                },
-                {
-                    id: idGenerator(),
-                    uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg"
-                },
-                {
-                    id: idGenerator(),
-                    uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg"
-                },
-                {
-                    id: idGenerator(),
-                    uri: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg"
-                },
+                { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-women-beauty-40901.jpg" },
+                { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg" },
+                { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg" },
+                { uri: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg" },
             ]}
         />
     );
@@ -90,17 +78,20 @@ function idGenerator() {
 
 ### Props
 
+> Version *2.0.0 update (or greater versions):  Updated props changes that may not be compatible with lower versions.
+
 | Props                         | Type              | Description                                                                                                                                                                                    | Default |
 |-------------------------------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
 | `images`                      | `Array`           | An array of objects.  `uri` and `id` is a required field. EX. `[{id: "50aspo9jq", uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg"}, {id: "b77cs7rjn", uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"}]` | Required |
 | `columns`                     | `number`          | Desired number of columns. | 2 |
-| `masonryListViewProps`        | `Object`          | Props to be passed to the underlying `ListView` masonry.  See [`ListView` props...](https://facebook.github.io/react-native/docs/listview) | {} |
 | `spacing`                     | `number`          | Gutter size of the column. The spacing is a multiplier of 1% of the available view. | 1 |
+| `initialColToRender`          | `number`          | How many columns to render in the initial batch. | 2 |
+| `initialNumInColsToRender`    | `number`          | How many items to render in each column in the initial batch. | 2 |
 | `sorted`                      | `Boolean`         | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | false |
 | `imageContainerStyle`         | `Object`          | The styles object which is added to the Image component. | {} |
 | `renderIndividualMasonryHeader` | `Function`        | Custom function that is executed **ABOVE** each individual masonry image.  First param is the individual data and second param is the index.  This function must return a React Component. | |
 | `renderIndividualMasonryFooter` | `Function`        | Custom function that is executed **BELOW** each individual masonry image.  First param is the individual data and second param is the index.  This function must return a React Component. | |
-| `refreshControl`              | `React.Component` | A component to be used as a refresh element for the Masonry component. | |
+| `masonryFlatListColProps`       | `Object`          | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | {} |
 | `imagePageComponent`          | `Function`        | Custom function to render the images for gallery.  First param is the image props and second param is the dimensions. | `<Image/>` component |
 | `errorPageComponent`          | `Function`        | Custom function to render the page of an image in gallery that couldn't be displayed. | `<View/>` with stylized error |
 | `renderPageHeader`            | `Function`        | Custom function to render gallery page header and must return a React Component.  First param is the individual data and second param is the index.  Third param is the onClose function to close gallery pages and return to the masonry layout. | |
@@ -113,6 +104,8 @@ function idGenerator() {
 | `pageScrollViewStyle`         | `Object`          | Custom style for the `FlatList` component for gallery. | {} |
 | `onPageSingleTapConfirmed`    | `Function`        | Fired after a single tap on page in gallery. | |
 | `onPageLongPress`             | `Function`        | Fired after a long press on page in gallery. | |
+
+<a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
 
 ## Scroll State and Events for Gallery
 
@@ -177,6 +170,14 @@ $ cd react-native-image-layout/example/
 ### Beginners
 
 Not sure where to start, or a beginner? Take a look at the [issues page](https://github.com/Luehang/react-native-image-layout/issues).
+
+### Author
+
+<a href="https://www.facebook.com/lue.hang">
+<img src="https://luehangs.site/images/lue-hang2018-square.jpg" style="height: 100px; width: 100px; border-radius: 100%;"/>
+</a>
+
+[Lue Hang](https://www.facebook.com/lue.hang)
 
 ### Contributors
 
