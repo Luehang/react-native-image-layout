@@ -82,6 +82,8 @@ function idGenerator() {
 }
 ```
 
+<a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
+
 ## API
 
 ``<ImageLayout />`` component accepts the following props...
@@ -165,6 +167,8 @@ $ cd react-native-image-layout/example/
 	2. npm install
 	3. emulator running in separate terminal
 	4. npm run android
+
+<a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
 
 ## Contribute
 
