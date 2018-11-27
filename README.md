@@ -52,7 +52,7 @@ render() {
                     // Version *2.0.0 update (or greater versions): Does not require
                     // an id for each image object, but is for good practice
                     // and can be better for performance for API.
-                    id: idGenerator(),
+                    id: "blpccx4cn",
                     uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"
                 },
                 { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-women-beauty-40901.jpg" },
@@ -64,10 +64,6 @@ render() {
     );
 }
 //...
-
-function idGenerator() {
-    return Math.random().toString(36).substr(2, 9);
-}
 ```
 
 <a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
@@ -82,7 +78,7 @@ function idGenerator() {
 
 | Props                         | Type              | Description                                                                                                                                                                                    | Default |
 |-------------------------------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
-| `images`                      | `Array`           | An array of objects.  `uri` and `id` is a required field. EX. `[{id: "50aspo9jq", uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg"}, {id: "b77cs7rjn", uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"}]` | Required |
+| `images`                      | `Array`           | An array of objects.  `uri` is a required field. EX. `[{uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg"}, {uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"}]` | Required |
 | `columns`                     | `number`          | Desired number of columns. | 2 |
 | `spacing`                     | `number`          | Gutter size of the column. The spacing is a multiplier of 1% of the available view. | 1 |
 | `initialColToRender`          | `number`          | How many columns to render in the initial batch. | 2 |
