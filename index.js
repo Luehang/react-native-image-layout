@@ -1,3 +1,3 @@
-import ImageLayout from "./src/ImageLibrary";
+import ImageLayout from "./src";
 
 module.exports = ImageLayout;

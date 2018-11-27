@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import isEqual from "lodash.isequal";
 import differenceBy from "lodash.differenceby";
-
 import { resolveImage } from "./model";
 import Column from "./Column";
 import styles from "./styles";

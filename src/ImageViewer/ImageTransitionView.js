@@ -1,8 +1,8 @@
 /* @flow */
 
 import React from "react";
-import PropTypes from "prop-types";
 import { Animated, StyleSheet } from "react-native";
+import PropTypes from "prop-types";
 
 const OPACITY_RANGE: Array<number> = [0.01, 0.015, 0.999, 1];
 const TRANSITION_RANGE: Array<number> = [0.02, 0.998];

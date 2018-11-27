@@ -1,8 +1,8 @@
 /* @flow */
 
 import React from "react";
-import PropTypes from "prop-types";
 import { Animated } from "react-native";
+import PropTypes from "prop-types";
 
 const ScrollSpacerView = (props: Props) => (
   // Add space above and below the image for

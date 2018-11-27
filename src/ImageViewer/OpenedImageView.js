@@ -1,8 +1,8 @@
 /* @flow */
 
 import React from "react";
-import PropTypes from "prop-types";
 import { Animated, TouchableWithoutFeedback } from "react-native";
+import PropTypes from "prop-types";
 
 class OpenedImageView extends React.PureComponent {
   state: State

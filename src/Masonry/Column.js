@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { View, FlatList } from "react-native";
-import styles from "./styles";
 import PropTypes from "prop-types";
 import Brick from "./Brick";
+import styles from "./styles";
 
 // Takes props and returns a masonry column
 export default class Column extends Component {
@@ -112,8 +112,7 @@ export default class Column extends Component {
 		//   },
 		//   "index": 9
 		// }
-		const brick = item;
-		const key = `MASONRY-BRICK-${brick.column}-${index}`;
+		const key = `MASONRY-BRICK-${item.column}-${index}`;
 		const { 
 			onPressImage, findImageIndex, renderIndividualMasonryHeader,
 			renderIndividualMasonryFooter, imageContainerStyle

@@ -6,9 +6,7 @@ import GallerySwiper from "react-native-gallery-swiper";
 import PropTypes from "prop-types";
 import ViewerBackground from "./ViewerBackground";
 import ScrollSpacerView from "./ScrollSpacerView";
-// import ImageHorizontalContainer from "./ImageHorizontalContainer";
 import ImageTransitionView from "./ImageTransitionView";
-// import { getImageMeasurements } from "./Utils";
 
 import type { ImageMeasurements } from "./Utils";
 

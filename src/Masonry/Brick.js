@@ -1,11 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {
 	Image,
 	Easing,
 	Animated,
 	TouchableOpacity
 } from "react-native";
+import PropTypes from "prop-types";
 
 class ImageCell extends React.Component {
 	_imageRef;

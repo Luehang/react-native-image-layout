@@ -9,9 +9,9 @@ import {
   View
 } from "react-native";
 import ImageViewer from "./ImageViewer";
-import Masonry from "./../Masonry";
+import Masonry from "./Masonry";
 
-class ImageBrowser extends React.Component {
+class ImageLayout extends React.Component {
   // TODO: fix iOS page vertical swipe on close flickering bug
   // TODO: fix iOS page vertical swipe on close animations
   // TODO: fix iOS page horizontal swipe flickering images
