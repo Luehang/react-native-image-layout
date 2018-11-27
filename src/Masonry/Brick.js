@@ -19,7 +19,8 @@ class ImageCell extends React.Component {
 		shouldHideDisplayedImage: PropTypes.bool.isRequired,
 		findImageIndex: PropTypes.func.isRequired,
 		renderIndividualMasonryHeader: PropTypes.func,
-		renderIndividualMasonryFooter: PropTypes.func
+		renderIndividualMasonryFooter: PropTypes.func,
+		imageContainerStyle: PropTypes.object
 	}
 
 	static contextTypes = {
@@ -90,7 +91,7 @@ class ImageCell extends React.Component {
 							width: imgWidth,
 							height: imgHeight,
 							x: imgPageX,
-							y: imgPageY + this.props.gutter
+							y: imgPageY + this.props.data.gutter
 						});
 					},
 					reject
@@ -103,10 +104,10 @@ class ImageCell extends React.Component {
 			/* eslint-disable no-console */
 			console.warn("measureImageSize: Undefined image size");
 		}
-		if (this.props.dimensions) {
+		if (this.props.data && this.props.data.dimensions) {
 			return {
-				width: this.props.dimensions.width,
-				height: this.props.dimensions.height
+				width: this.props.data.dimensions.width,
+				height: this.props.data.dimensions.height
 			};
 		}
 		return new Promise((resolve, reject) => {
@@ -136,16 +137,20 @@ class ImageCell extends React.Component {
 	}
 
 	render() {
-		const header = (this.props.renderIndividualMasonryHeader)
-			? this.props.renderIndividualMasonryHeader(this.props.data, this.props.findImageIndex(this.props.data.uri))
+		const { 
+			data, imageId, source, findImageIndex, imageContainerStyle,
+			renderIndividualMasonryHeader, renderIndividualMasonryFooter
+		} = this.props;
+		const header = (renderIndividualMasonryHeader)
+			? renderIndividualMasonryHeader(data, findImageIndex(data.uri))
 			: null;
-		const footer = (this.props.renderIndividualMasonryFooter)
-			? this.props.renderIndividualMasonryFooter(this.props.data, this.props.findImageIndex(this.props.data.uri))
+		const footer = (renderIndividualMasonryFooter)
+			? renderIndividualMasonryFooter(data, findImageIndex(data.uri))
 			: null;
 		return (
 			<TouchableOpacity
-				key={this.props.imageId}
-				onPress={() => this._onPressImage(this.props.source.uri)}
+				key={imageId}
+				onPress={() => this._onPressImage(source.uri)}
 			>
 				{header}
 				<Animated.Image
@@ -158,16 +163,15 @@ class ImageCell extends React.Component {
 					onLoad={() => {
 						this.setState({ imageLoaded: true });
 					}}
-					source={this.props.source}
+					source={source}
 					resizeMode="cover"
 					style={[
 						{
-							width: this.props.width,
-							height: this.props.height,
-							// marginTop: this.props.gutter,
+							width: data.width,
+							height: data.height,
 							backgroundColor: "lightgrey",
-							margin: this.props.gutter / 2,
-							...this.props.imageContainerStyle
+							margin: data.gutter / 2,
+							...imageContainerStyle
 						},
 						{ opacity: this.state.opacity }
 					]}

@@ -113,28 +113,29 @@ export default class Column extends Component {
 		//   "index": 9
 		// }
 		const brick = item;
-		const gutter = brick.gutter;
 		const key = `MASONRY-BRICK-${brick.column}-${index}`;
-		const { imageContainerStyle } = this.props;
-		const props = { ...brick, gutter, key, imageContainerStyle };
+		const { 
+			onPressImage, findImageIndex, renderIndividualMasonryHeader,
+			renderIndividualMasonryFooter, imageContainerStyle
+		} = this.props;
+		const props = {
+			key, onPressImage, findImageIndex, renderIndividualMasonryHeader,
+			renderIndividualMasonryFooter, imageContainerStyle
+		};
 
 		return (
 			<Brick
 				{...props}
 
-				key={brick.uri}
-				data={brick}
-				imageId={brick.id}
-				source={{ uri: brick.uri }}
+				key={item.uri}
+				data={item}
+				imageId={item.id}
+				source={{ uri: item.uri }}
 				onPressImage={this.props.onPressImage}
 				shouldHideDisplayedImage={
 					this.props.displayImageViewer
-					&& this.props.displayedImageId === brick.id
+					&& this.props.displayedImageId === item.id
 				}
-				findImageIndex={this.props.findImageIndex}
-
-				renderIndividualMasonryHeader={this.props.renderIndividualMasonryHeader}
-				renderIndividualMasonryFooter={this.props.renderIndividualMasonryFooter}
 			/>
 		);
 	}
