@@ -6,7 +6,7 @@ import {
   Modal,
   Platform,
   StyleSheet,
-  SafeAreaView
+  View
 } from "react-native";
 import ImageViewer from "./ImageViewer";
 import Masonry from "./../Masonry";
@@ -20,7 +20,6 @@ class ImageBrowser extends React.Component {
   _imageSizeMeasurers: { [imageId: string]: () => void }
 
   static propTypes = {
-    ...SafeAreaView.propTypes,
     images: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
@@ -128,7 +127,7 @@ class ImageBrowser extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container} {...this.props}>
+      <View style={styles.container} {...this.props}>
         <Masonry
           bricks={this.props.images}
           columns={this.props.columns}
@@ -182,7 +181,7 @@ class ImageBrowser extends React.Component {
               />
             </Modal>
           )}
-      </SafeAreaView>
+      </View>
     );
   }
 }
