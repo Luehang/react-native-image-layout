@@ -327,28 +327,6 @@ class ImageViewer extends React.Component {
               />
             </Animated.View>
           </Animated.View>
-
-          {/* <ImageHorizontalContainer
-            images={this.props.images}
-            imageId={this.props.imageId}
-            uri={imageSource ? imageSource.uri : ""}
-            width={width.__getValue()}
-            height={height.__getValue()}
-
-            imageWidth={openImageMeasurements ? openImageMeasurements.width : 0}
-            imageHeight={
-              openImageMeasurements ? openImageMeasurements.height : 0
-            }
-            realImageWidth={this.state.imageWidth}
-            realImageHeight={this.state.imageHeight}
-            openProgress={openProgress}
-            dismissProgress={dismissProgress}
-            transitionProgress={transitionProgress}
-            dismissScrollProgress={this.state.dismissScrollProgress}
-            onChangePhoto={this.props.onChangePhoto}
-            openImageMeasurements={openImageMeasurements || {}}
-            onPressImage={this._onPressImage}
-          /> */}
           <ScrollSpacerView width={width} height={height} />
         </Animated.ScrollView>
       );
@@ -431,25 +409,6 @@ class ImageViewer extends React.Component {
           />
         </Animated.View>
       </Animated.View>
-
-      // <ImageHorizontalContainer
-      //   images={this.props.images}
-      //   imageId={this.props.imageId}
-      //   uri={imageSource ? imageSource.uri : ""}
-      //   width={width.__getValue()}
-      //   height={height.__getValue()}
-      //   imageWidth={openImageMeasurements ? openImageMeasurements.width : 0}
-      //   imageHeight={openImageMeasurements ? openImageMeasurements.height : 0}
-      //   realImageWidth={this.state.imageWidth}
-      //   realImageHeight={this.state.imageHeight}
-      //   openProgress={openProgress}
-      //   dismissProgress={dismissProgress}
-      //   transitionProgress={transitionProgress}
-      //   dismissScrollProgress={this.state.dismissScrollProgress}
-      //   onChangePhoto={this.props.onChangePhoto}
-      //   openImageMeasurements={openImageMeasurements || {}}
-      //   onPressImage={this._onPressImage}
-      // />
     );
   }
 
