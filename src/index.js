@@ -192,4 +192,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ImageBrowser;
+export default ImageLayout;
