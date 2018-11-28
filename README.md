@@ -83,8 +83,8 @@ _renderPageHeader = (image, index, onClose) => {
                 onClose params (third params) is a function
                 that will close the react-native-gallery-swiper.
 
-                Swiping up and down animations + functionality 
-                on the gallery is only compatible with iOS at
+                Swiping up and down animations for closing the
+                gallery is only compatible with iOS at
                 the moment.  It will be compatible with
                 Android in future releases.
             */}
