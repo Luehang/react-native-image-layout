@@ -55,15 +55,12 @@ class ImageLayout extends React.Component {
   }
 
   static defaultProps = {
-    bricks: [],
 		columns: 2,
 		spacing: 1,
 		initialColToRender: 2,
 		initialNumInColsToRender: 2,
 		sorted: false,
-		imageContainerStyle: {},
-		priority: "order",
-		onEndReachedThreshold: 25
+		imageContainerStyle: {}
   }
 
   static childContextTypes = {

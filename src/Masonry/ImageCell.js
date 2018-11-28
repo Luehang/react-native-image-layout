@@ -137,7 +137,7 @@ class ImageCell extends React.Component {
 	}
 
 	render() {
-		const { 
+		const {
 			data, imageId, source, findImageIndex, imageContainerStyle,
 			renderIndividualMasonryHeader, renderIndividualMasonryFooter
 		} = this.props;

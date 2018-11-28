@@ -115,7 +115,7 @@ export default class Column extends Component {
 		//   "index": 9
 		// }
 		const key = `MASONRY-BRICK-${item.column}-${index}`;
-		const { 
+		const {
 			onPressImage, findImageIndex, renderIndividualMasonryHeader,
 			renderIndividualMasonryFooter, imageContainerStyle
 		} = this.props;
