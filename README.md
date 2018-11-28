@@ -1,6 +1,6 @@
 <a href="https://luehangs.site"><img src="https://luehangs.site/images/react-native-image-layout-main.jpg" alt="react-native-image-layout"/></a>
 
-> An easy and simple to use React Native component to render a custom masonry layout for remote images and displayed on a custom interactive image viewer.  Includes animations and support for both iOS and Android.
+> An easy and simple to use React Native component to render a custom masonry layout for remote images and displayed on a custom interactive image viewer.  Includes animations and support for both iOS and Android. Free and made possible by [Lue Hang](https://www.facebook.com/lue.hang) (the author) along with costly maintenance and updates.
 
 <a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
 
@@ -57,6 +57,53 @@ render() {
                     uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"
                 },
                 { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-women-beauty-40901.jpg" },
+                { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg" },
+                { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg" },
+                { uri: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg" },
+            ]}
+        />
+    );
+}
+//...
+```
+
+To select, callback and manipulate an image...
+
+```javascript
+import ImageLayout from "react-native-image-layout";
+//...
+
+//...
+_renderPageHeader = (image, index, onClose) => {
+    // Individual image object data.
+    console.log(image);
+    return (
+        <View>
+            {/*
+                onClose params (third params) is a function
+                that will close the react-native-gallery-swiper.
+
+                Swiping up and down animations + functionality 
+                on the gallery is only compatible with iOS at
+                the moment.  It will be compatible with
+                Android in future releases.
+            */}
+            <TouchableWithoutFeedback onPress={() => {onClose();}}>
+                <Image
+                    source={backIcon}
+                    style={{marginLeft: 10, height: 30, width: 30}}
+                />
+            </TouchableWithoutFeedback>
+            <Text>{image.filename}</Text>
+        </View>
+    );
+}
+
+render() {
+    return (
+        <ImageLayout
+            renderPageHeader={this._renderPageHeader}
+            images={[
                 { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg" },
                 { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg" },
                 { uri: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg" },
@@ -174,7 +221,7 @@ Not sure where to start, or a beginner? Take a look at the [issues page](https:/
 <img src="https://www.luehangs.site/images/lue-hang2018-circle-150px.png"/>
 </a>
 
-[Lue Hang](https://www.facebook.com/lue.hang)
+Free and made possible by [Lue Hang](https://www.facebook.com/lue.hang) (the author) along with costly maintenance and updates.
 
 ### Contributors
 
