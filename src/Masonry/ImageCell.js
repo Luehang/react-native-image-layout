@@ -150,7 +150,7 @@ class ImageCell extends React.Component {
 		return (
 			<TouchableOpacity
 				key={imageId}
-				style={{margin: data.gutter / 2, marginTop: data.gutter}}
+				style={{margin: data.gutter / 2}}
 				onPress={() => this._onPressImage(source.uri)}
 			>
 				{header}

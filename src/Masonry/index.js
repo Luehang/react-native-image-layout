@@ -5,7 +5,6 @@ import differenceBy from "lodash.differenceby";
 
 import { resolveImage } from "./model";
 import Column from "./Column";
-import styles from "./styles";
 
 const deviceWidth = Dimensions.get("window").width;
 
@@ -33,13 +32,6 @@ export default class Masonry extends Component {
 	};
 
 	static defaultProps = {
-		bricks: [],
-		columns: 2,
-		spacing: 1,
-		initialColToRender: 2,
-		initialNumInColsToRender: 2,
-		sorted: false,
-		imageContainerStyle: {},
 		priority: "order",
 		onEndReachedThreshold: 25
 	};
@@ -84,15 +76,6 @@ export default class Masonry extends Component {
 		}
 
 		// TODO: optimize masonry list
-		// if (Platform.OS === "android") {
-		// 	// We use the existing data and only resolve what is needed
-		// 	if (appendedData) {
-		// 		const offSet = this.props.bricks.length;
-		// 		this.setState({
-		// 			_uniqueCount
-		// 		}, this.resolveBricks({...nextProps, bricks: brickDiff}, offSet));
-		// 	}
-		// }
 	}
 
 	resolveBricks(bricks, columns, offSet = 0) {
@@ -204,7 +187,11 @@ export default class Masonry extends Component {
 			<View style={{flex: 1}} onLayout={(event) => this._setParentDimensions(event)}>
 				<FlatList
 					style={{padding: (deviceWidth / 100) * this.props.spacing / 2, backgroundColor: "#fff"}}
-					contentContainerStyle={styles.masonry__container}
+					contentContainerStyle={{
+						justifyContent: "space-between",
+						flexDirection: "row",
+						width: "100%"
+					}}
 					removeClippedSubviews={true}
 					onEndReachedThreshold={this.props.onEndReachedThreshold}
 					{...this.props.masonryFlatListColProps}

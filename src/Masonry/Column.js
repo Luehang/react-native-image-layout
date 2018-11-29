@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { View, FlatList } from "react-native";
 import PropTypes from "prop-types";
 import ImageCell from "./ImageCell";
-import styles from "./styles";
 
 // Takes props and returns a masonry column
 export default class Column extends Component {
@@ -22,10 +21,6 @@ export default class Column extends Component {
 
 		renderIndividualMasonryHeader: PropTypes.func,
 		renderIndividualMasonryFooter: PropTypes.func
-	};
-
-	static defaultProps = {
-		imageContainerStyle: {}
 	};
 
 	constructor(props) {
@@ -76,11 +71,9 @@ export default class Column extends Component {
 		// The gutter is 1% of the available view width
 		const gutterBase = width / 100;
 		const gutterSize = gutterBase * this.props.spacing;
-		const gutterTotal = gutterSize * (nColumns + 1);
 
 		// Column gutters are shared between right and left image
-		// const columnWidth = (width / nColumns) - (gutterSize / 2);
-		const columnWidth = (width - gutterTotal) / nColumns;
+		const columnWidth = (width / nColumns) - (gutterSize / 2);
 
 		if (this.state.columnWidth !== columnWidth) {
 			this.setState({
@@ -147,15 +140,13 @@ export default class Column extends Component {
 	render() {
 		return (
 			<View
-				style={[
-					{
-						width: this.state.columnWidth,
-						overflow: "hidden",
-						flex: 1,
-						backgroundColor: "#fff"
-					},
-					styles.masonry__column
-				]}>
+				style={{
+					width: this.state.columnWidth,
+					overflow: "hidden",
+					flex: 1,
+					backgroundColor: "#fff",
+					flexDirection: "column"
+				}}>
 				<FlatList
 					key={this.props.columnKey}
 					data={this.state.images}

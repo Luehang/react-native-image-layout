@@ -55,12 +55,15 @@ class ImageLayout extends React.Component {
   }
 
   static defaultProps = {
+    bricks: [],
 		columns: 2,
 		spacing: 1,
 		initialColToRender: 2,
 		initialNumInColsToRender: 2,
 		sorted: false,
-		imageContainerStyle: {}
+		imageContainerStyle: {},
+		priority: "order",
+		onEndReachedThreshold: 25
   }
 
   static childContextTypes = {
@@ -131,18 +134,18 @@ class ImageLayout extends React.Component {
         <Masonry
           bricks={this.props.images}
           columns={this.props.columns}
-
-          masonryFlatListColProps={this.props.masonryFlatListColProps}
-          sorted={this.props.sorted}
+          spacing={this.props.spacing}
           // TODO: add masonry header and footer that
           // flows with the FlatList
           // renderMasonryHeader={this.props.renderMasonryHeader}
           // renderMasonryFooter={this.props.renderMasonryFooter}
           initialColToRender={this.props.initialColToRender}
 					initialNumInColsToRender={this.props.initialNumInColsToRender}
+          sorted={this.props.sorted}
           imageContainerStyle={this.props.imageContainerStyle}
           renderIndividualMasonryHeader={this.props.renderIndividualMasonryHeader}
           renderIndividualMasonryFooter={this.props.renderIndividualMasonryFooter}
+          masonryFlatListColProps={this.props.masonryFlatListColProps}
 
           onPressImage={this.openImageViewer}
           displayImageViewer={this.state.displayImageViewer}
