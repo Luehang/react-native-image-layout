@@ -204,11 +204,10 @@ export default class Masonry extends Component {
 			<View style={{flex: 1}} onLayout={(event) => this._setParentDimensions(event)}>
 				<FlatList
 					style={{padding: (deviceWidth / 100) * this.props.spacing / 2, backgroundColor: "#fff"}}
-					// contentContainerStyle={styles.masonry__container}
+					contentContainerStyle={styles.masonry__container}
 					removeClippedSubviews={true}
 					onEndReachedThreshold={this.props.onEndReachedThreshold}
 					{...this.props.masonryFlatListColProps}
-					horizontal={true}
 					onEndReached={this._delayCallEndReach}
 					initialNumToRender={this.props.initialColToRender}
 					keyExtractor={(item, index) => index.toString()}
