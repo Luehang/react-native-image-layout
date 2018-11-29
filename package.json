@@ -1,5 +1,5 @@
 {
-  "version": "2.0.10",
+  "version": "2.0.11",
   "name": "react-native-image-layout",
   "description": "An easy and simple to use React Native component to render a custom masonry layout for remote images and displayed on a custom interactive image viewer.  Includes animations and support for both iOS and Android.  Free and made possible along with costly maintenance and updates by [Lue Hang](https://www.facebook.com/lue.hang) (the author).",
   "keywords": [
