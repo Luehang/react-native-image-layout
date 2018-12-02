@@ -18,6 +18,7 @@ Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-nativ
 - [Props](#props)
 - [Scroll State and Events](#scroll-state-and-events)
 - [Example Project](#example-project)
+- [Author](#author)
 - [Contribute](#contribute)
 - [License](#license)
 
@@ -216,6 +217,14 @@ $ cd react-native-image-layout/example/
 
 <a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
 
+## Author
+
+<a href="https://www.facebook.com/lue.hang">
+<img src="https://www.luehangs.site/images/lue-hang2018-circle-150px.png"/>
+</a>
+
+Free and made possible along with costly maintenance and updates by [Lue Hang](https://www.facebook.com/lue.hang) (the author).
+
 ## Contribute
 
 [Pull requests](https://github.com/Luehang/react-native-image-layout/pulls) are welcomed.
@@ -223,14 +232,6 @@ $ cd react-native-image-layout/example/
 ### Beginners
 
 Not sure where to start, or a beginner? Take a look at the [issues page](https://github.com/Luehang/react-native-image-layout/issues).
-
-### Author
-
-<a href="https://www.facebook.com/lue.hang">
-<img src="https://www.luehangs.site/images/lue-hang2018-circle-150px.png"/>
-</a>
-
-Free and made possible along with costly maintenance and updates by [Lue Hang](https://www.facebook.com/lue.hang) (the author).
 
 ### Contributors
 
