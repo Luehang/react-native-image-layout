@@ -186,7 +186,7 @@ export default class Masonry extends Component {
 		return (
 			<View style={{flex: 1}} onLayout={(event) => this._setParentDimensions(event)}>
 				<FlatList
-					style={{padding: (deviceWidth / 100) * this.props.spacing / 2, backgroundColor: "#fff"}}
+					style={{padding: (this.state.dimensions.width / 100) * this.props.spacing / 2, backgroundColor: "#fff"}}
 					contentContainerStyle={{
 						justifyContent: "space-between",
 						flexDirection: "row",
