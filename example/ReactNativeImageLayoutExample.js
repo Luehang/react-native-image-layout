@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import {
     Platform,
     Dimensions,
+    Linking,
     StyleSheet,
     View,
     Text,
@@ -32,7 +33,8 @@ export default class ReactNativeImageLayoutExample extends Component {
                     images={testData}
                     renderIndividualMasonryHeader={(data, index) => {
                         return (
-                            <TouchableWithoutFeedback>
+                            <TouchableWithoutFeedback
+                                onPress={() => Linking.openURL("https://luehangs.site")}>
                                 <View style={styles.masonryHeader}>
                                     <Image
                                         source={{ uri: "https://luehangs.site/images/lue-hang2018-square.jpg" }}
