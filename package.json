@@ -39,6 +39,13 @@
     "src": "./src"
   },
   "main": "index.js",
+  "files": [
+    "/src",
+    "index.js",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
   "dependencies": {
     "prop-types": "^15.6.2",
     "react-native-gallery-swiper": "^1.0.2",
