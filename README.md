@@ -49,23 +49,17 @@ render() {
         <ImageLayout
             images={[
                 { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg" },
-                {
+                { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg",
                     // Version *2.0.0 update (or greater versions):
-                    // Does not require an id for each image
-                    // object, but is for good practice and
-                    // can be better for performance for API.
-                    id: "blpccx4cn",
-                    uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"
-                },
-                {
-                    uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-women-beauty-40901.jpg",
+                    // Optional: Does not require an id for each
+                    // image object, but is for best practices and
+                    // can be better for performance with the API.
+                    id: "blpccx4cn" },
+                { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-women-beauty-40901.jpg",
                     // Optional: Adding a dimensions field with
-                    // width and height will help improve
-                    // performance.
-                    dimensions: {
-                        width: 1080,
-                        height: 1920
-                    }
+                    // the actual width and height for REMOTE IMAGES
+                    // will help improve performance.
+                    dimensions: { width: 1080, height: 1920 }
                 },
                 { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg" },
                 { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg" },
@@ -134,30 +128,30 @@ render() {
 
 > Version *2.0.0 update (or greater versions):  Props changes that may not be compatible with lower versions.
 
-| Props                         | Type              | Description                                                                                                                                                                                    | Default |
-|-------------------------------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
-| `images`                      | `Array`           | An array of objects.  `uri` is a required field. EX. `[{uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg"}, {uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"}]` | Required |
-| `columns`                     | `number`          | Desired number of columns. | 2 |
-| `spacing`                     | `number`          | Gutter size of the column. The spacing is a multiplier of 1% of the available view. | 1 |
-| `initialColToRender`          | `number`          | How many columns to render in the initial batch. | 2 |
-| `initialNumInColsToRender`    | `number`          | How many items to render in each column in the initial batch. | 2 |
-| `sorted`                      | `Boolean`         | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | false |
-| `imageContainerStyle`         | `Object`          | The styles object which is added to the Image component. | {} |
-| `renderIndividualMasonryHeader` | `Function`        | Custom function that is executed **ABOVE** each individual masonry image.  First param is the individual data and second param is the index.  This function must return a React Component. | |
-| `renderIndividualMasonryFooter` | `Function`        | Custom function that is executed **BELOW** each individual masonry image.  First param is the individual data and second param is the index.  This function must return a React Component. | |
-| `masonryFlatListColProps`       | `Object`          | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | {} |
-| `imagePageComponent`          | `Function`        | Custom function to render the images for gallery.  First param is the image props and second param is the dimensions. | `<Image/>` component |
-| `errorPageComponent`          | `Function`        | Custom function to render the page of an image in gallery that couldn't be displayed. | `<View/>` with stylized error |
-| `renderPageHeader`            | `Function`        | Custom function to render gallery page header and must return a React Component.  First param is the individual data and second param is the index.  Third param is the onClose function to close gallery pages and return to the masonry layout. | |
-| `renderPageFooter`            | `Function`        | Custom function to render gallery page footer and must return a React Component.  First param is the individual data and second param is the index.  Third param is the onClose function to close gallery pages and return to the masonry layout. | |
-| `pagesFlatListProps`          | `Object`          | Props to be passed to the underlying `FlatList` gallery.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist) | {windowSize: 3} |
-| `pageMargin`                  | `number`          | Blank space to show between images in gallery. | 0 |
-| `onPageSelected`              | `Function`        | Fired with the index of page that has been selected in gallery. | |
-| `onPageScrollStateChanged`    | `Function`        | Called when page scrolling state has changed in gallery.  See [scroll state and events...](#scroll-state-and-events) | |
-| `onPageScroll`                | `Function`        | Scroll event for page gallery.  See [scroll state and events...](#scroll-state-and-events) | |
-| `pageScrollViewStyle`         | `Object`          | Custom style for the `FlatList` component for gallery. | {} |
-| `onPageSingleTapConfirmed`    | `Function`        | Fired after a single tap on page in gallery. | |
-| `onPageLongPress`             | `Function`        | Fired after a long press on page in gallery. | |
+| Props                         | Description                                                                                                                                                                                    | Type              | Default |
+|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
+| `images`                      | An array of objects.  `uri` is a required field. EX. `[{uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg"}, {uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"}]` | `Array` | Required |
+| `columns`                     | Desired number of columns. | `number` | 2 |
+| `spacing`                     | Gutter size of the column. The spacing is a multiplier of 1% of the available view. | `number` | 1 |
+| `initialColToRender`          | How many columns to render in the initial batch. | `number` | 2 |
+| `initialNumInColsToRender`    | How many items to render in each column in the initial batch. | `number` | 2 |
+| `sorted`                      | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | `Boolean` | false |
+| `imageContainerStyle`         | The styles object which is added to the Image component. | `Object` | {} |
+| `renderIndividualMasonryHeader` | Custom function that is executed **ABOVE** each individual masonry image.  First param is the individual data and second param is the index.  This function must return a React Component. | `Function` | |
+| `renderIndividualMasonryFooter` | Custom function that is executed **BELOW** each individual masonry image.  First param is the individual data and second param is the index.  This function must return a React Component. | `Function` | |
+| `masonryFlatListColProps`       | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | `Object` | {} |
+| `imagePageComponent`          | Custom function to render the images for gallery.  First param is the image props and second param is the dimensions. | `Function` | `<Image/>` component |
+| `errorPageComponent`          | Custom function to render the page of an image in gallery that couldn't be displayed. | `Function` | `<View/>` with stylized error |
+| `renderPageHeader`            | Custom function to render gallery page header and must return a React Component.  First param is the individual data and second param is the index.  Third param is the onClose function to close gallery pages and return to the masonry layout. | `Function` | |
+| `renderPageFooter`            | Custom function to render gallery page footer and must return a React Component.  First param is the individual data and second param is the index.  Third param is the onClose function to close gallery pages and return to the masonry layout. | `Function` | |
+| `pagesFlatListProps`          | Props to be passed to the underlying `FlatList` gallery.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist) | `Object` | {windowSize: 3} |
+| `pageMargin`                  | Blank space to show between images in gallery. | `number` | 0 |
+| `onPageSelected`              | Fired with the index of page that has been selected in gallery. | `Function` | |
+| `onPageScrollStateChanged`    | Called when page scrolling state has changed in gallery.  See [scroll state and events...](#scroll-state-and-events) | `Function` | |
+| `onPageScroll`                | Scroll event for page gallery.  See [scroll state and events...](#scroll-state-and-events) | `Function` | |
+| `pageScrollViewStyle`         | Custom style for the `FlatList` component for gallery. | `Object` | {} |
+| `onPageSingleTapConfirmed`    | Fired after a single tap on page in gallery. | `Function` | |
+| `onPageLongPress`             | Fired after a long press on page in gallery. | `Function` | |
 
 <a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
 
