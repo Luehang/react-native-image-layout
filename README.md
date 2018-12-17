@@ -124,9 +124,11 @@ render() {
 
 ``<ImageLayout />`` component accepts the following props...
 
-### Props
+## Props
 
-> Version *2.0.0 update (or greater versions):  Props changes that may not be compatible with lower versions.
+> **Version *2.0.0 update (or greater versions):**  Props changes that may not be compatible with lower versions.
+
+### Image Layout Props of ``<ImageLayout />``
 
 | Props                         | Description                                                                                                                                                                                    | Type              | Default |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
@@ -140,6 +142,11 @@ render() {
 | `renderIndividualMasonryHeader` | Custom function that is executed **ABOVE** each individual masonry image.  First param is the individual data and second param is the index.  This function must return a React Component. | `Function` | |
 | `renderIndividualMasonryFooter` | Custom function that is executed **BELOW** each individual masonry image.  First param is the individual data and second param is the index.  This function must return a React Component. | `Function` | |
 | `masonryFlatListColProps`       | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | `Object` | {} |
+
+### Gallery Props of ``<ImageLayout />``
+
+| Props                         | Description                                                                                                                                                                                    | Type              | Default |
+|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
 | `imagePageComponent`          | Custom function to render the images for gallery.  First param is the image props and second param is the dimensions. | `Function` | `<Image/>` component |
 | `errorPageComponent`          | Custom function to render the page of an image in gallery that couldn't be displayed. | `Function` | `<View/>` with stylized error |
 | `renderPageHeader`            | Custom function to render gallery page header and must return a React Component.  First param is the individual data and second param is the index.  Third param is the onClose function to close gallery pages and return to the masonry layout. | `Function` | |
@@ -159,7 +166,7 @@ render() {
 
 Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-native-gallery-swiper).
 
-* `onPageScroll` : (event) => {}. 
+* `onPageScroll` : (event: { position: number, offset: number, fraction: number }) => {}
 
   The event object carries the following data: 
 
@@ -167,7 +174,7 @@ Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-nativ
   * `offset`: value from range [0,1) describing stage between page transitions.
   * `fraction`: means that (1 - x) fraction of the page at "position" index is visible, and x fraction of the next page is visible.
 
-* `onPageScrollStateChanged` : (state) => {}.
+* `onPageScrollStateChanged` : (state: string) => {}
 
   Called when the page scrolling state has changed. The page scrolling state can be in 3 states:
 
