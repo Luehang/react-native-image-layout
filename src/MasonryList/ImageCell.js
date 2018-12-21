@@ -44,16 +44,6 @@ export default class ImageCell extends React.PureComponent {
 		);
 	}
 
-	// shouldComponentUpdate(nextProps, nextState) {
-	// 	if (
-	// 		this.props.shouldHideDisplayedImage !== nextProps.shouldHideDisplayedImage ||
-	// 		this.state.imageLoaded !== nextState.imageLoaded
-	// 	) {
-	// 		return true;
-	// 	}
-	// 	return false;
-	// }
-
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState.imageLoaded === false && this.state.imageLoaded) {
 			Animated.timing(this.state.opacity, {

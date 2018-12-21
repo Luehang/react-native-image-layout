@@ -315,7 +315,6 @@ export default class ImageViewer extends React.PureComponent {
             }
           }}
           onPageSelected={(index) => {
-            console.log("pageI", index);
             this.props.onChangePhoto(images[index].id, index);
             if (index !== this.props.galleryInitialIndex) {
               this.setState(
