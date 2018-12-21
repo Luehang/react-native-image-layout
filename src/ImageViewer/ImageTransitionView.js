@@ -1,5 +1,3 @@
-/* @flow */
-
 import React from "react";
 import { Animated, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
@@ -7,7 +5,7 @@ import PropTypes from "prop-types";
 const OPACITY_RANGE: Array<number> = [0.01, 0.015, 0.999, 1];
 const TRANSITION_RANGE: Array<number> = [0.02, 0.998];
 
-class ImageTransitionView extends React.PureComponent {
+export default class ImageTransitionView extends React.PureComponent {
   static propTypes = {
     source: PropTypes.any.isRequired,
     transitionProgress: PropTypes.oneOfType([
@@ -178,5 +176,3 @@ class ImageTransitionView extends React.PureComponent {
     );
   }
 }
-
-export default ImageTransitionView;

@@ -1,10 +1,8 @@
-/* @flow */
-
 import React from "react";
 import { Animated, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
 
-class ViewerBackground extends React.PureComponent {
+export default class ViewerBackground extends React.PureComponent {
   static propTypes = {
     opacityProgress: PropTypes.instanceOf(Animated.Value).isRequired,
     inputRange: PropTypes.arrayOf(PropTypes.number).isRequired,
@@ -34,5 +32,3 @@ const styles = StyleSheet.create({
     backgroundColor: "black"
   }
 });
-
-export default ViewerBackground;

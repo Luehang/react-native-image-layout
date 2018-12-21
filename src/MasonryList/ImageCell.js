@@ -5,9 +5,10 @@ import {
 	Animated,
 	TouchableOpacity
 } from "react-native";
+import Injector from "./Injector";
 import PropTypes from "prop-types";
 
-class ImageCell extends React.Component {
+export default class ImageCell extends React.PureComponent {
 	_imageRef;
 	_readyToMeasure;
 
@@ -17,7 +18,6 @@ class ImageCell extends React.Component {
 		source: PropTypes.any.isRequired,
 		onPressImage: PropTypes.func.isRequired,
 		shouldHideDisplayedImage: PropTypes.bool.isRequired,
-		findImageIndex: PropTypes.func.isRequired,
 		renderIndividualMasonryHeader: PropTypes.func,
 		renderIndividualMasonryFooter: PropTypes.func,
 		imageContainerStyle: PropTypes.object
@@ -44,15 +44,15 @@ class ImageCell extends React.Component {
 		);
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		if (
-			this.props.shouldHideDisplayedImage !== nextProps.shouldHideDisplayedImage ||
-			this.state.imageLoaded !== nextState.imageLoaded
-		) {
-			return true;
-		}
-		return false;
-	}
+	// shouldComponentUpdate(nextProps, nextState) {
+	// 	if (
+	// 		this.props.shouldHideDisplayedImage !== nextProps.shouldHideDisplayedImage ||
+	// 		this.state.imageLoaded !== nextState.imageLoaded
+	// 	) {
+	// 		return true;
+	// 	}
+	// 	return false;
+	// }
 
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState.imageLoaded === false && this.state.imageLoaded) {
@@ -128,58 +128,70 @@ class ImageCell extends React.Component {
 		});
 	}
 
-	_onPressImage = (uri) => {
+	_onPressImage = (index) => {
 		// Wait for the image to load before reacting to press events
 		if (this.state.imageLoaded) {
-			const index = this.props.findImageIndex(uri);
 			this.props.onPressImage(this.props.imageId, index);
+		}
+	}
+
+	_onLongPressImage = ({item, index}) => {
+		// Wait for the image to load before reacting to press events
+		if (this.state.imageLoaded) {
+			this.props.onLongPressImage &&
+				this.props.onLongPressImage({item, index});
 		}
 	}
 
 	render() {
 		const {
-			data, imageId, source, findImageIndex, imageContainerStyle,
+			data, imageId, source, imageContainerStyle,
 			renderIndividualMasonryHeader, renderIndividualMasonryFooter
 		} = this.props;
 		const header = (renderIndividualMasonryHeader)
-			? renderIndividualMasonryHeader(data, findImageIndex(data.uri))
+			? renderIndividualMasonryHeader(data, data.index)
 			: null;
 		const footer = (renderIndividualMasonryFooter)
-			? renderIndividualMasonryFooter(data, findImageIndex(data.uri))
+			? renderIndividualMasonryFooter(data, data.index)
 			: null;
+		const imageProps = {
+			ref: (ref) => {
+				this._imageRef = ref;
+			},
+			onLayout: () => {
+				this._readyToMeasure = true;
+			},
+			onLoad: () => {
+				this.setState({ imageLoaded: true });
+			},
+			source: source,
+			resizeMode: "cover",
+			style: [
+				{
+					width: data.width,
+					height: data.height,
+					backgroundColor: "lightgrey",
+					...imageContainerStyle
+				},
+				{ opacity: this.state.opacity }
+			]
+		};
 		return (
 			<TouchableOpacity
 				key={imageId}
 				style={{margin: data.gutter / 2}}
-				onPress={() => this._onPressImage(source.uri)}
+				onPress={() => this._onPressImage(data.index)}
+				onLongPress={() =>
+					this._onLongPressImage({item: data, index: data.index})
+				}
 			>
 				{header}
-				<Animated.Image
-					ref={(ref) => {
-						this._imageRef = ref;
-					}}
-					onLayout={() => {
-						this._readyToMeasure = true;
-					}}
-					onLoad={() => {
-						this.setState({ imageLoaded: true });
-					}}
-					source={source}
-					resizeMode="cover"
-					style={[
-						{
-							width: data.width,
-							height: data.height,
-							backgroundColor: "lightgrey",
-							...imageContainerStyle
-						},
-						{ opacity: this.state.opacity }
-					]}
+				<Injector
+					defaultComponent={Animated.Image}
+					defaultProps={imageProps}
 				/>
 				{footer}
 			</TouchableOpacity>
 		);
 	}
 }
-
-export default ImageCell;

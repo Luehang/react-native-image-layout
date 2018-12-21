@@ -1,5 +1,3 @@
-/* @flow */
-
 import React from "react";
 import { Animated } from "react-native";
 import PropTypes from "prop-types";

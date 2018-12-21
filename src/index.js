@@ -1,27 +1,21 @@
-/* @flow */
-
 import React from "react";
 import PropTypes from "prop-types";
 import {
   Modal,
   Platform,
-  StyleSheet,
   View
 } from "react-native";
 import ImageViewer from "./ImageViewer";
-import Masonry from "./Masonry";
+import Masonry from "./MasonryList";
 
-class ImageLayout extends React.Component {
+class ImageLayout extends React.PureComponent {
   // TODO: full animations for Android
   _imageMeasurers: { [imageId: string]: () => void }
   _imageSizeMeasurers: { [imageId: string]: () => void }
 
   static propTypes = {
     images: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        uri: PropTypes.string.isRequired
-      }).isRequired
+      PropTypes.object.isRequired
     ).isRequired,
 
     // Masonry props
@@ -31,10 +25,9 @@ class ImageLayout extends React.Component {
     initialNumInColsToRender: PropTypes.number,
     sorted: PropTypes.bool,
     masonryFlatListColProps: PropTypes.object,
-    // TODO: add masonry header and footer that
-    // flows with the FlatList
-    // renderMasonryHeader: PropTypes.func,
-    // renderMasonryFooter: PropTypes.func,
+    renderMainHeader: PropTypes.func,
+    renderMainFooter: PropTypes.func,
+		onLongPressImage: PropTypes.func,
     imageContainerStyle: PropTypes.object,
     renderIndividualMasonryHeader: PropTypes.func,
     renderIndividualMasonryFooter: PropTypes.func,
@@ -44,6 +37,7 @@ class ImageLayout extends React.Component {
     errorPageComponent: PropTypes.func,
     pagesFlatListProps: PropTypes.object,
     pageMargin: PropTypes.number,
+    sensitivePageScroll: PropTypes.bool,
     onPageSelected: PropTypes.func,
     onPageScrollStateChanged: PropTypes.func,
     onPageScroll: PropTypes.func,
@@ -52,18 +46,20 @@ class ImageLayout extends React.Component {
     onPageLongPress: PropTypes.func,
     renderPageHeader: PropTypes.func,
     renderPageFooter: PropTypes.func,
+    removeClippedSubviewsPager: PropTypes.bool
   }
 
   static defaultProps = {
-    bricks: [],
+    images: [],
 		columns: 2,
 		spacing: 1,
 		initialColToRender: 2,
 		initialNumInColsToRender: 2,
 		sorted: false,
 		imageContainerStyle: {},
-		priority: "order",
-		onEndReachedThreshold: 25
+    onEndReachedThreshold: 25,
+    sensitivePageScroll: false,
+    removeClippedSubviewsPager: true
   }
 
   static childContextTypes = {
@@ -77,7 +73,7 @@ class ImageLayout extends React.Component {
       displayImageViewer: false,
       galleryInitialIndex: 0,
       galleryIndex: 0,
-      imageId: undefined
+      imageId: ""
     };
     this._imageMeasurers = {};
     this._imageSizeMeasurers = {};
@@ -103,22 +99,12 @@ class ImageLayout extends React.Component {
     };
   }
 
-  _findImageIndex = (uri) => {
-		return this.state.resolvedData.findIndex(
-			(data) => data.uri.toLowerCase() === uri.toLowerCase()
-		);
-  }
-
   _setImageData = (data) => {
     this.setState({ resolvedData: data });
   }
 
   openImageViewer = (imageId, index) => {
     this.setState({ displayImageViewer: true, imageId, galleryInitialIndex: index });
-  }
-
-  closeImageViewer = () => {
-    this.setState({ displayImageViewer: false, imageId: undefined });
   }
 
   onChangePhoto = (imageId, galleryIndex) => {
@@ -128,11 +114,19 @@ class ImageLayout extends React.Component {
     });
   }
 
+  closeImageViewer = () => {
+    this.setState({ displayImageViewer: false, imageId: "" });
+  }
+
   render() {
     return (
-      <View style={styles.container} {...this.props}>
+      <View style={{flex: 1}} {...this.props}>
+        {
+          this.props.renderMainHeader &&
+            this.props.renderMainHeader()
+        }
         <Masonry
-          bricks={this.props.images}
+          images={this.props.images}
           columns={this.props.columns}
           spacing={this.props.spacing}
           // TODO: add masonry header and footer that
@@ -142,6 +136,7 @@ class ImageLayout extends React.Component {
           initialColToRender={this.props.initialColToRender}
 					initialNumInColsToRender={this.props.initialNumInColsToRender}
           sorted={this.props.sorted}
+          onLongPressImage={this.props.onLongPressImage}
           imageContainerStyle={this.props.imageContainerStyle}
           renderIndividualMasonryHeader={this.props.renderIndividualMasonryHeader}
           renderIndividualMasonryFooter={this.props.renderIndividualMasonryFooter}
@@ -150,14 +145,17 @@ class ImageLayout extends React.Component {
           onPressImage={this.openImageViewer}
           displayImageViewer={this.state.displayImageViewer}
           displayedImageId={this.state.imageId}
-          findImageIndex={this._findImageIndex}
           setImageData={this._setImageData}
         />
+        {
+          this.props.renderMainFooter &&
+            this.props.renderMainFooter()
+        }
         {this.state.displayImageViewer &&
           this.state.imageId &&
           (
             <Modal
-              visible={true}
+              visible={this.state.displayImageViewer && this.state.imageId ? true : false}
               transparent={true}
               animationType={Platform.OS === "ios" ? "none" : "fade"}
               onRequestClose={this.closeImageViewer}>
@@ -175,6 +173,7 @@ class ImageLayout extends React.Component {
                 errorPageComponent={this.props.errorPageComponent}
                 pagesFlatListProps={this.props.pagesFlatListProps}
                 pageMargin={this.props.pageMargin}
+                sensitivePageScroll={this.props.sensitivePageScroll}
                 onPageSelected={this.props.onPageSelected}
                 onPageScrollStateChanged={this.props.onPageScrollStateChanged}
                 onPageScroll={this.props.onPageScroll}
@@ -183,6 +182,7 @@ class ImageLayout extends React.Component {
                 onPageLongPress={this.props.onPageLongPress}
                 renderPageHeader={this.props.renderPageHeader}
                 renderPageFooter={this.props.renderPageFooter}
+                removeClippedSubviewsPager={this.props.removeClippedSubviewsPager}
               />
             </Modal>
           )}
@@ -190,11 +190,5 @@ class ImageLayout extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-});
 
 export default ImageLayout;

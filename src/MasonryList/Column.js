@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import { View, FlatList } from "react-native";
+import React from "react";
+import { View, FlatList, Platform } from "react-native";
 import PropTypes from "prop-types";
+
 import ImageCell from "./ImageCell";
 
 // Takes props and returns a masonry column
-export default class Column extends Component {
+export default class Column extends React.PureComponent {
 	static propTypes = {
 		data: PropTypes.array,
 		columns: PropTypes.number,
@@ -14,10 +15,10 @@ export default class Column extends Component {
 		imageContainerStyle: PropTypes.object,
 		spacing: PropTypes.number,
 
-		onPressImage: PropTypes.func.isRequired,
+		onPressImage: PropTypes.func,
+		onLongPressImage: PropTypes.func,
 		displayImageViewer: PropTypes.bool.isRequired,
 		displayedImageId: PropTypes.string,
-		findImageIndex: PropTypes.func,
 
 		renderIndividualMasonryHeader: PropTypes.func,
 		renderIndividualMasonryFooter: PropTypes.func
@@ -96,6 +97,7 @@ export default class Column extends Component {
 		// {
 		//   "item": {
 		//     "uri": "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg",
+		//     "source": {},
 		//     "column": 0,
 		//     "dimensions": {
 		//       "width": 625,
@@ -107,25 +109,24 @@ export default class Column extends Component {
 		//   },
 		//   "index": 9
 		// }
-		const key = `MASONRY-BRICK-${item.column}-${index}`;
 		const {
-			onPressImage, findImageIndex, renderIndividualMasonryHeader,
-			renderIndividualMasonryFooter, imageContainerStyle
+			renderIndividualMasonryHeader, renderIndividualMasonryFooter,
+			imageContainerStyle, onPressImage, onLongPressImage
 		} = this.props;
 		const props = {
-			key, onPressImage, findImageIndex, renderIndividualMasonryHeader,
-			renderIndividualMasonryFooter, imageContainerStyle
+			renderIndividualMasonryHeader, renderIndividualMasonryFooter,
+			imageContainerStyle
 		};
 
 		return (
 			<ImageCell
 				{...props}
 
-				key={item.uri}
 				data={item}
 				imageId={item.id}
-				source={{ uri: item.uri }}
-				onPressImage={this.props.onPressImage}
+				source={item.source}
+				onPressImage={onPressImage}
+				onLongPressImage={onLongPressImage}
 				shouldHideDisplayedImage={
 					this.props.displayImageViewer
 					&& this.props.displayedImageId === item.id
@@ -135,7 +136,7 @@ export default class Column extends Component {
 	}
 
 	// _keyExtractor :: item -> id
-	_keyExtractor = (item) => ("IMAGE-KEY-" + item.uri + "---" + (item.key ? item.key : "0"));
+	_keyExtractor = (item, index) => ("IMAGE-CELL-" + index.toString() + "---" + (item.id ? item.id : "0"));
 
 	render() {
 		return (
@@ -152,7 +153,7 @@ export default class Column extends Component {
 					data={this.state.images}
 					keyExtractor={this._keyExtractor}
 					initialNumToRender={this.props.initialNumInColsToRender}
-					removeClippedSubviews={true}
+					removeClippedSubviews={Platform.OS === "ios"}
 					renderItem={this._renderBrick}
 				/>
 			</View>

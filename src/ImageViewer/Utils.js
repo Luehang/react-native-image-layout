@@ -1,5 +1,3 @@
-/* @flow */
-
 import { Platform, Dimensions } from "react-native";
 
 export type ImageMeasurements = {
@@ -57,10 +55,9 @@ export function getImageMeasurements(sizes: {
   };
 }
 
-const X_WIDTH = 375;
-const X_HEIGHT = 812;
-
 export function isIPhoneX(): boolean {
+  const X_WIDTH = 375;
+  const X_HEIGHT = 812;
   return (
     Platform.OS === "ios" &&
     ((Dimensions.get("window").height === X_HEIGHT &&
