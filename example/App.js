@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from "react";
 import {
     Platform,
@@ -10,6 +9,7 @@ import {
     TouchableWithoutFeedback,
     Image,
 } from "react-native";
+import FastImage from "react-native-fast-image";
 import ImageLayout from "react-native-image-layout";
 
 import testData from "./data";
@@ -26,16 +26,27 @@ export default class ReactNativeImageLayoutExample extends Component {
             <View
                 style={styles.container}
             >
-                <View style={[styles.statusBarTop, styles.header, styles.mobileHeader]}>
-                    <Text style={styles.title}>Pictures</Text>
-                </View>
                 <ImageLayout
+                    renderMainHeader={() => {
+                        return (
+                            <View style={[styles.statusBarTop, styles.header, styles.mobileHeader]}>
+                                <Text style={styles.title}>Pictures</Text>
+                            </View>
+                        );
+                    }}
                     images={testData}
+                    imagePageComponent={(imageProps, imageDimensions, i) => {
+                      return (
+                        <FastImage
+                          {...imageProps}
+                        />
+                      );
+                    }}
                     renderIndividualMasonryHeader={(data, index) => {
                         return (
                             <TouchableWithoutFeedback
                                 onPress={() => Linking.openURL("https://luehangs.site")}>
-                                <View style={styles.masonryHeader}>
+                                <View style={[styles.masonryHeader, {width: data.width}]}>
                                     <Image
                                         source={{ uri: "https://luehangs.site/images/lue-hang2018-square.jpg" }}
                                         style={styles.userPic} />
@@ -52,7 +63,7 @@ export default class ReactNativeImageLayoutExample extends Component {
                                 </TouchableWithoutFeedback>
                                 <View style={{}}>
                                     <Text style={[styles.profilePrimary, styles.whiteText]}>{image.title}</Text>
-                                    <Text style={[styles.profileSecondary, styles.whiteText]}>test</Text>
+                                    <Text style={[styles.profileSecondary, styles.whiteText]}>{image.description}</Text>
                                 </View>
                             </View>
                         );
@@ -86,7 +97,7 @@ const styles = StyleSheet.create({
         backgroundColor: "transparent"
     },
     mobileHeader: {
-        width: deviceWidth,
+        // width: deviceWidth,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center"
@@ -97,7 +108,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         padding: 5,
         alignItems: "center",
-        backgroundColor: "transparent"
+        backgroundColor: "rgba(150,150,150,0.4)"
     },
     pageHeader: {
         flexDirection: "row",

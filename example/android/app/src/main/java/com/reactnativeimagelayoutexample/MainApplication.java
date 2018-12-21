@@ -1,4 +1,4 @@
-package com.example;
+package com.reactnativeimagelayoutexample;
 
 import android.app.Application;
 
