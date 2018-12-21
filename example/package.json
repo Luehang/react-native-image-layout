@@ -7,16 +7,14 @@
     "android": "react-native run-android"
   },
   "dependencies": {
-    "react-native-image-layout": "^3.0.0",
+    "react-native-image-layout": "^3.0.1",
     "prop-types": "15.6.2",
     "react": "16.6.3",
     "react-native": "0.57.8",
     "react-native-fast-image": "5.1.1"
   },
   "devDependencies": {
-    "data.task": "3.1.2",
     "metro-react-native-babel-preset": "0.51.0",
-    "react-native-gallery-swiper": "^1.4.2",
     "react-test-renderer": "16.6.3"
   }
 }
