@@ -20,7 +20,7 @@ export default class MasonryList extends React.Component {
 		renderIndividualMasonryHeader: PropTypes.func,
 		renderIndividualMasonryFooter: PropTypes.func,
 		masonryFlatListColProps: PropTypes.object,
-
+		backgroundColor: PropTypes.string,
 		onPressImage: PropTypes.func,
 		onLongPressImage: PropTypes.func,
 		displayImageViewer: PropTypes.bool.isRequired,
@@ -171,7 +171,7 @@ export default class MasonryList extends React.Component {
 		return (
 			<View style={{flex: 1}} onLayout={(event) => this._setParentDimensions(event)}>
 				<FlatList
-					style={{padding: (this.state.dimensions.width / 100) * this.props.spacing / 2, backgroundColor: "#fff"}}
+					style={{padding: (this.state.dimensions.width / 100) * this.props.spacing / 2, backgroundColor: this.props.backgroundColor}}
 					contentContainerStyle={{
 						justifyContent: "space-between",
 						flexDirection: "row",
