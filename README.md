@@ -275,6 +275,7 @@ render() {
 | `images`                      | An array of objects.  `uri` is a required field. EX. `[{uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg"}, {uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"}]` | `Array` | Required |
 | `columns`                     | Desired number of columns. | `number` | 2 |
 | `spacing`                     | Gutter size of the column. The spacing is a multiplier of 1% of the available view. | `number` | 1 |
+| `backgroundColor`          | Defined a background color for the viewer | `string` | 2 |
 | `initialColToRender`          | How many columns to render in the initial batch. | `number` | 2 |
 | `initialNumInColsToRender`    | How many items to render in each column in the initial batch. | `number` | 2 |
 | `sorted`                      | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | `Boolean` | false |
@@ -425,7 +426,7 @@ Not sure where to start, or a beginner? Take a look at the [issues page](https:/
 
 Contributors will be posted here.
 
-<br/>
+<br/> Eyal Abadi 
 <br/>
 <br/>
 
