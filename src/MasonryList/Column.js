@@ -14,7 +14,7 @@ export default class Column extends React.PureComponent {
 		columnKey: PropTypes.string,
 		imageContainerStyle: PropTypes.object,
 		spacing: PropTypes.number,
-
+		backgroundColor: PropTypes.string,
 		onPressImage: PropTypes.func,
 		onLongPressImage: PropTypes.func,
 		displayImageViewer: PropTypes.bool.isRequired,
@@ -145,7 +145,7 @@ export default class Column extends React.PureComponent {
 					width: this.state.columnWidth,
 					overflow: "hidden",
 					flex: 1,
-					backgroundColor: "#fff",
+					backgroundColor: this.props.backgroundColor,
 					flexDirection: "column"
 				}}>
 				<FlatList
