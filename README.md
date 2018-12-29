@@ -274,9 +274,9 @@ render() {
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
 | `images`                      | An array of objects.  `uri` is a required field. EX. `[{uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg"}, {uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"}]` | `Array` | Required |
 | `columns`                     | Desired number of columns. | `number` | 2 |
+| `initialColToRender`          | How many columns to render in the initial batch. | `number` | iOS=2, android=columns |
+| `initialNumInColsToRender`    | How many items to render in each column in the initial batch. | `number` | 1 |
 | `spacing`                     | Gutter size of the column. The spacing is a multiplier of 1% of the available view. | `number` | 1 |
-| `initialColToRender`          | How many columns to render in the initial batch. | `number` | 2 |
-| `initialNumInColsToRender`    | How many items to render in each column in the initial batch. | `number` | 2 |
 | `sorted`                      | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | `Boolean` | false |
 | `onLongPressImage`            | Executed after a long press on an item on the masonry. `({item: Object, index: number}) => void` **Version ^3.0.0 update**. | `Function` | |
 | `imageContainerStyle`         | The styles object which is added to the Image component. | `Object` | {} |
