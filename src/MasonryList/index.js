@@ -53,9 +53,34 @@ export default class MasonryList extends React.Component {
 	resolveImages = (images, columns) => {
 		const firstRenderNum = this.props.initialColToRender * this.props.initialNumInColsToRender;
 		const _resolvedData = new Array(images.length);
-		var unsortedIndex = 0;
-		var renderIndex = 0;
-		var _batchOne = [];
+		let unsortedIndex = 0;
+		let renderIndex = 0;
+		let _batchOne = [];
+
+		let columnHeightTotals = [];
+		let columnCounting = 1;
+		let columnHighestHeight = null;
+		function _assignColumns(image, nColumns) {
+			const columnIndex = columnCounting - 1;
+			const { height } = image.dimensions;
+
+			if (!columnHeightTotals[columnCounting - 1]) {
+				columnHeightTotals[columnCounting - 1] = height;
+			} else {
+				columnHeightTotals[columnCounting - 1] = columnHeightTotals[columnCounting - 1] + height;
+			}
+
+			if (!columnHighestHeight) {
+				columnHighestHeight = columnHeightTotals[columnCounting - 1];
+				columnCounting = columnCounting < nColumns ? columnCounting + 1 : 1;
+			} else if (columnHighestHeight <= columnHeightTotals[columnCounting - 1]) {
+				columnHighestHeight = columnHeightTotals[columnCounting - 1];
+				columnCounting = columnCounting < nColumns ? columnCounting + 1 : 1;
+			}
+
+			return columnIndex;
+		}
+
 		images
 			.map((image) => {
 				const source = image.source
@@ -114,12 +139,12 @@ export default class MasonryList extends React.Component {
 						(resolvedImage) => {
 							if (this.props.sorted) {
 								resolvedImage.index = index;
-								resolvedImage.column = index % columns;
 							} else {
 								resolvedImage.index = unsortedIndex;
-								resolvedImage.column = unsortedIndex % columns;
 								unsortedIndex++;
 							}
+
+							resolvedImage.column = _assignColumns(resolvedImage, columns);
 
 							_resolvedData.splice(resolvedImage.index, 1, resolvedImage);
 
@@ -162,9 +187,8 @@ export default class MasonryList extends React.Component {
 	}
 
 	_onCallEndReach = () => {
-		if (this.props.masonryFlatListColProps && this.props.masonryFlatListColProps.onEndReached) {
+		this.props.masonryFlatListColProps.onEndReached &&
 			this.props.masonryFlatListColProps.onEndReached();
-		}
 	}
 
 	render() {
@@ -215,22 +239,18 @@ export default class MasonryList extends React.Component {
 export const idGenerator = () => Math.random().toString(36).substr(2, 9);
 
 // Returns a copy of the dataSet with resolvedImage in correct place
-// (resolvedImage, dataSetA, bool) -> dataSetB
 export function _insertIntoColumn (resolvedImage, dataSet, sorted) {
 	let dataCopy = dataSet;
 	const columnIndex = resolvedImage.column;
 	const column = dataSet[columnIndex];
 
 	if (column) {
-		// Append to existing "row"/"column"
 		column.push(resolvedImage);
 		if (sorted) {
-			// Sort images according to the index of their original array position
 			column.sort((a, b) => (a.index < b.index) ? -1 : 1);
 		}
 		dataCopy[columnIndex] = column;
 	} else {
-		// Pass it as a new "row" for the data source
 		dataCopy.push([resolvedImage]);
 	}
 
