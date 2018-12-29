@@ -187,6 +187,7 @@ export default class MasonryList extends React.Component {
 	}
 
 	_onCallEndReach = () => {
+		this.props.masonryFlatListColProps &&
 		this.props.masonryFlatListColProps.onEndReached &&
 			this.props.masonryFlatListColProps.onEndReached();
 	}
