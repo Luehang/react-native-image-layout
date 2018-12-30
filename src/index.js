@@ -53,7 +53,7 @@ class ImageLayout extends React.PureComponent {
     images: [],
 		columns: 2,
 		spacing: 1,
-		initialColToRender: Platform.OS === "ios" ? 2 : null,
+		initialColToRender: null,
 		initialNumInColsToRender: 1,
 		sorted: false,
 		imageContainerStyle: {},

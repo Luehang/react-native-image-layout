@@ -206,7 +206,11 @@ export default class MasonryList extends React.Component {
 					onEndReachedThreshold={this.props.onEndReachedThreshold}
 					{...this.props.masonryFlatListColProps}
 					onEndReached={this._onCallEndReach}
-					initialNumToRender={this.props.initialColToRender}
+					initialNumToRender={
+						this.props.initialColToRender
+							? this.props.initialColToRender
+							: this.props.columns
+					}
 					keyExtractor={(item, index) => "COLUMN-" + index.toString()}
 					data={this.state._sortedData}
 					renderItem={({item, index}) => {
