@@ -17,7 +17,7 @@
 
 ![react-native-image-layout](https://www.luehangs.site/videos/react-native-image-layout-demo.gif)
 
-Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LH LABS](https://www.luehangs.site).
+#### :information_source: Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LH LABS](https://www.luehangs.site).
 
 Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-native-gallery-swiper).
 
@@ -30,18 +30,18 @@ Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-nativ
 <br/>
 <br/>
 
-## Index
+# Index
 
-- [Install](#install)
-- [iOS Usage Example](#ios-usage-example)
-- [ANDROID Usage Example](#android-usage-example)
-- [API](#api)
-- [Props](#props)
-- [Scroll State and Events for Gallery](#scroll-state-and-events-for-gallery)
-- [Example Project](#example-project)
-- [Author](#author)
-- [Contribute](#contribute)
-- [License](#license)
+### 1.  [Install](#large_blue_diamond-install)
+### 2.  [iOS Usage Example](#large_blue_diamond-ios-usage-example)
+### 3.  [ANDROID Usage Example](#large_blue_diamond-android-usage-example)
+### 4.  [API](#large_blue_diamond-api)
+### 5.  [Props](#large_blue_diamond-props)
+### 6.  [Scroll State and Events for Gallery](#large_blue_diamond-scroll-state-and-events-for-gallery)
+### 7.  [Example Project](#large_blue_diamond-example-project)
+### 8.  [Author](#large_blue_diamond-author)
+### 9.  [Contribute](#large_blue_diamond-contribute)
+### 10.  [License](#large_blue_diamond-license)
 
 <br/>
 <br/>
@@ -52,7 +52,7 @@ Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-nativ
 <br/>
 <br/>
 
-## Install
+## :large_blue_diamond: Install
 
 Type in the following to the command line to install the dependency.
 
@@ -75,7 +75,7 @@ $ yarn add react-native-image-layout
 <br/>
 <br/>
 
-## iOS Usage Example
+## :large_blue_diamond: iOS Usage Example
 
 Add an ``import`` to the top of the file.  At minimal, declare the ``ImageLayout`` component in the ``render()`` method providing an array of data for the ``images`` prop.
 
@@ -124,9 +124,9 @@ render() {
 <br/>
 <br/>
 
-## ANDROID Usage Example
+## :large_blue_diamond: ANDROID Usage Example
 
-**REACT NATIVE IMAGE AND ANDROID BUG**
+:information_source: **REACT NATIVE IMAGE AND ANDROID BUG**
 
 <br/>
 
@@ -134,7 +134,7 @@ render() {
 
 <br/>
 
-### Install an Caching Module
+### :small_blue_diamond: Install an Caching Module
 
 On the command line, type in the following and install the caching module.
 
@@ -148,11 +148,11 @@ Automatic link for native installation.
 $ react-native link react-native-fast-image
 ```
 
-**If there are problems with the installation and start up of `react-native-fast-image`, follow the manual installation [here](https://github.com/DylanVann/react-native-fast-image/blob/master/docs/installation-manual.md).**
+:information_source: **If there are problems with the installation and start up of `react-native-fast-image`, follow the manual installation [here](https://github.com/DylanVann/react-native-fast-image/blob/master/docs/installation-manual.md).**
 
 <br/>
 
-### Import and Declare Components
+### :small_blue_diamond: Import and Declare Components
 
 ```javascript
 import ImageLayout from "react-native-image-layout";
@@ -203,7 +203,7 @@ render() {
 
 <br/>
 
-### Hint: Adding a Close Button for Gallery
+### :small_blue_diamond: Hint: Adding a Close Button for Gallery
 
 To select, callback and manipulate an image...
 
@@ -258,17 +258,17 @@ render() {
 <br/>
 <br/>
 
-## API
+## :large_blue_diamond: API
 
 ``<ImageLayout />`` component accepts the following props...
 
 <br/>
 
-## Props
+# :large_blue_diamond: Props
 
-> **Version *2.0.0 update (or greater versions):**  Props changes that may not be compatible with lower versions.
+:information_source: **Version *2.0.0 update (or greater versions):**  Props changes that may not be compatible with lower versions.
 
-### Image Layout Props of ``<ImageLayout />``
+## :small_blue_diamond: Image Layout Props of ``<ImageLayout />``
 
 | Props                         | Description                                                                                                                                                                                    | Type              | Default |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
@@ -292,7 +292,7 @@ render() {
 <br/>
 <br/>
 
-### Gallery Props of ``<ImageLayout />``
+## :small_blue_diamond: Gallery Props of ``<ImageLayout />``
 
 | Props                         | Description                                                                                                                                                                                    | Type              | Default |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
@@ -317,7 +317,7 @@ render() {
 <br/>
 <br/>
 
-## Scroll State and Events for Gallery
+## :large_blue_diamond: Scroll State and Events for Gallery
 
 Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-native-gallery-swiper).
 
@@ -346,7 +346,7 @@ Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-nativ
 <br/>
 <br/>
 
-## Example Project
+## :large_blue_diamond: Example Project
 
 Perform steps 1-2 to run locally:
 
@@ -355,7 +355,7 @@ Perform steps 1-2 to run locally:
 
 <br/>
 
-### 1. Clone the Repo
+### :small_blue_diamond: 1. Clone the Repo
 
 **Clone** `react-native-image-layout` locally. In a terminal, run:
 
@@ -365,7 +365,7 @@ $ git clone https://github.com/Luehang/react-native-image-layout.git react-nativ
 
 <br/>
 
-### 2. Install and Run
+### :small_blue_diamond: 2. Install and Run
 
 ```bash
 $ cd react-native-image-layout/example/
@@ -392,7 +392,7 @@ $ cd react-native-image-layout/example/
 <br/>
 <br/>
 
-## Author
+## :large_blue_diamond: Author
 
 <a href="https://www.facebook.com/lue.hang">
 <img src="https://www.luehangs.site/images/lue-hang2018-circle-150px.png"/>
@@ -409,21 +409,21 @@ Free and made possible along with costly maintenance and updates by [Lue Hang](h
 <br/>
 <br/>
 
-## Contribute
+## :large_blue_diamond: Contribute
 
 [Pull requests](https://github.com/Luehang/react-native-image-layout/pulls) are welcomed.
 
 <br/>
 
-### Beginners
+### :large_blue_diamond: Contributors
 
-Not sure where to start, or a beginner? Take a look at the [issues page](https://github.com/Luehang/react-native-image-layout/issues).
+Contributors will be posted here.
 
 <br/>
 
-### Contributors
+### :small_blue_diamond: Beginners
 
-Contributors will be posted here.
+Not sure where to start, or a beginner? Take a look at the [issues page](https://github.com/Luehang/react-native-image-layout/issues).
 
 <br/>
 <br/>
@@ -434,6 +434,6 @@ Contributors will be posted here.
 <br/>
 <br/>
 
-## License
+## :large_blue_diamond: License
 
 MIT © [Lue Hang](https://luehangs.site), as found in the LICENSE file.
