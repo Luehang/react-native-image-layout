@@ -33,7 +33,9 @@ export default class MasonryList extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			dimensions: {},
+			dimensions: {
+				width: 0
+			},
 			initialOrientation: true,
 			_sortedData: []
 		};

@@ -36,7 +36,7 @@ Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-nativ
 ### 2.  [iOS Usage Example](#large_blue_diamond-ios-usage-example)
 ### 3.  [ANDROID Usage Example](#large_blue_diamond-android-usage-example)
 ### 4.  [API](#large_blue_diamond-api)
-### 5.  [Props](#large_blue_diamond-props)
+### 5.  :books: [Props](#large_blue_diamond-props)
 ### 6.  [Scroll State and Events for Gallery](#large_blue_diamond-scroll-state-and-events-for-gallery)
 ### 7.  [Example Project](#large_blue_diamond-example-project)
 ### 8.  [Author](#large_blue_diamond-author)
