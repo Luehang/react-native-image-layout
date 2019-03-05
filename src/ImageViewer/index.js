@@ -375,8 +375,7 @@ export default class ImageViewer extends React.PureComponent {
               transitionProgress
             )}
           </Animated.View>
-          {Platform.OS === "ios" &&
-            initialImageMeasurements &&
+          {initialImageMeasurements &&
             openImageMeasurements &&
             (
               <ImageTransitionView

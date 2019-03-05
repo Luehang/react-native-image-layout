@@ -5,8 +5,9 @@ import {
   Platform,
   View
 } from "react-native";
+import MasonryList from "react-native-masonry-list";
+import ImageCell from "./ImageCell";
 import ImageViewer from "./ImageViewer";
-import Masonry from "./MasonryList";
 
 class ImageLayout extends React.PureComponent {
   // TODO: full animations for Android
@@ -125,7 +126,7 @@ class ImageLayout extends React.PureComponent {
           this.props.renderMainHeader &&
             this.props.renderMainHeader()
         }
-        <Masonry
+        <MasonryList
           images={this.props.images}
           columns={this.props.columns}
           spacing={this.props.spacing}
@@ -142,10 +143,42 @@ class ImageLayout extends React.PureComponent {
           renderIndividualMasonryFooter={this.props.renderIndividualMasonryFooter}
           masonryFlatListColProps={this.props.masonryFlatListColProps}
 
-          onPressImage={this.openImageViewer}
-          displayImageViewer={this.state.displayImageViewer}
-          displayedImageId={this.state.imageId}
-          setImageData={this._setImageData}
+          onImageResolved={(resolvedImage, renderIndex) => {
+            resolvedImage.id = Math.random().toString(36).substr(2, 9);
+            if (renderIndex !== 0) {
+              this.setState((state) => {
+                const calculatedData = state.resolvedData.concat(resolvedImage);
+                return {
+                  resolvedData: calculatedData
+                };
+              });
+            } else {
+              this.setState({
+                resolvedData: [resolvedImage]
+              });
+            }
+            return resolvedImage;
+          }}
+
+          completeCustomComponent={({ source, style, data}) => {
+            return (
+              <ImageCell
+                data={data}
+                imageId={data.id}
+                source={source}
+                onPressImage={this.openImageViewer}
+                onLongPressImage={this.props.onLongPressImage}
+                shouldHideDisplayedImage={
+                  this.state.displayImageViewer
+                  && this.state.imageId === data.id
+                }
+
+                renderIndividualMasonryHeader={this.props.renderIndividualMasonryHeader}
+                renderIndividualMasonryFooter={this.props.renderIndividualMasonryFooter}
+                imageContainerStyle={this.props.imageContainerStyle}
+              />
+            );
+          }}
         />
         {
           this.props.renderMainFooter &&

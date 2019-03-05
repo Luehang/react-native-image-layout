@@ -81,7 +81,7 @@ export default class ImageCell extends React.PureComponent {
 							width: imgWidth,
 							height: imgHeight,
 							x: imgPageX,
-							y: imgPageY + this.props.data.gutter
+							y: imgPageY + this.props.data.masonryDimensions.gutter
 						});
 					},
 					reject
@@ -158,8 +158,8 @@ export default class ImageCell extends React.PureComponent {
 			resizeMode: "cover",
 			style: [
 				{
-					width: data.width,
-					height: data.height,
+					width: data.masonryDimensions.width,
+					height: data.masonryDimensions.height,
 					backgroundColor: "lightgrey",
 					...imageContainerStyle
 				},
@@ -169,7 +169,7 @@ export default class ImageCell extends React.PureComponent {
 		return (
 			<TouchableOpacity
 				key={imageId}
-				style={{margin: data.gutter / 2}}
+				style={{margin: data.masonryDimensions.gutter / 2}}
 				onPress={() => this._onPressImage(data.index)}
 				onLongPress={() =>
 					this._onLongPressImage({item: data, index: data.index})
