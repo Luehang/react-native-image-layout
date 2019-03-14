@@ -280,7 +280,7 @@ render() {
 | `initialNumInColsToRender`    | How many items to render in each column in the initial batch. | `number` | 1 |
 | `spacing`                     | Gutter size of the column. The spacing is a multiplier of 1% of the available view. | `number` | 1 |
 | `sorted`                      | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | `Boolean` | false |
-| `onLongPressImage`            | Executed after a long press on an item on the masonry. `({item: Object, index: number}) => void` **Version ^3.0.0 update**. | `Function` | |
+| `onLongPressImage`            | Executed after a long press on an item on the masonry. `({item: Object, index: number}) => void` **Version \*3.0.0 update**. | `Function` | |
 | `imageContainerStyle`         | The styles object which is added to the Image component. | `Object` | {} |
 | `renderIndividualMasonryHeader` | Custom function that is executed **ABOVE** each individual masonry image. `(item: Object, index: number) => ?React.Element` | `Function` | |
 | `renderIndividualMasonryFooter` | Custom function that is executed **BELOW** each individual masonry image. `(item: Object, index: number) => ?React.Element` | `Function` | |
@@ -298,20 +298,20 @@ render() {
 
 | Props                         | Description                                                                                                                                                                                    | Type              | Default |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
-| `imagePageComponent`          | Custom function to render the images for gallery.  `(imageProps: { imageLoaded: Boolean, source: object, image: object, style: Array<object>, resizeMode: string, capInsets: object, onLoadStart: Function, onLoad: Function, ...extras }, imageDimensions: {width: number, height: number}, index: number) => React.Element` **index params included in Version ^3.0.0 update** | `Function` | `<Image/>` component |
+| `imagePageComponent`          | Custom function to render the images for gallery.  `(imageProps: { imageLoaded: Boolean, source: object, image: object, style: Array<object>, resizeMode: string, capInsets: object, onLoadStart: Function, onLoad: Function, ...extras }, imageDimensions: {width: number, height: number}, index: number) => React.Element` **index params included in Version \*3.0.0 update** | `Function` | `<Image/>` component |
 | `errorPageComponent`          | Custom function to render the page of an image in gallery that couldn't be displayed. | `Function` | `<View/>` with stylized error |
 | `renderPageHeader`            | Custom function to render gallery page header.  `(item: Object, index: number, onClose: Function) => ?React.Element` The `onClose` function is use to close gallery pages and return to the masonry layout. | `Function` | |
 | `renderPageFooter`            | Custom function to render gallery page footer.  `(item: Object, index: number, onClose: Function) => ?React.Element` The `onClose` function is use to close gallery pages and return to the masonry layout. | `Function` | |
 | `pagesFlatListProps`          | Props to be passed to the underlying `FlatList` gallery.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist) | `Object` | {windowSize: 3} |
 | `pageMargin`                  | Blank space to show between images in gallery. | `number` | 0 |
-| `sensitivePageScroll`         | Whether to enable an intelligent detection to detect rough and fast swiping gestures in order to "cushion" or slow down a swipe at the end. **Version ^3.0.0 update**. | `Boolean` | `false` |
+| `sensitivePageScroll`         | Whether to enable an intelligent detection to detect rough and fast swiping gestures in order to "cushion" or slow down a swipe at the end. **Version \*3.0.0 update**. | `Boolean` | `false` |
 | `onPageSelected`              | Fired with the index of page that has been selected in gallery. `(index: number) => void` | `Function` | |
 | `onPageScrollStateChanged`    | Called when page scrolling state has changed in gallery.  See [scroll state and events...](#scroll-state-and-events) `(state: string) => void` | `Function` | |
 | `onPageScroll`                | Scroll event for page gallery.  See [scroll state and events...](#scroll-state-and-events) `(event: { position: number, offset: number, fraction: number }) => void` | `Function` | |
 | `pageScrollViewStyle`         | Custom style for the `FlatList` component for gallery. | `Object` | {} |
 | `onPageSingleTapConfirmed`    | Fired after a single tap on page in gallery. | `Function` | |
 | `onPageLongPress`             | Fired after a long press on page in gallery. | `Function` | |
-| `removeClippedSubviewsPager`  | To improve pager scroll performance for large lists. **Version ^3.0.0 update**. | `Boolean` | `true`
+| `removeClippedSubviewsPager`  | To improve pager scroll performance for large lists. **Version \*3.0.0 update**. | `Boolean` | `true`
 
 <br/>
 <br/>
