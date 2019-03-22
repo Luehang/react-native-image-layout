@@ -13,7 +13,7 @@ import PageFooter from "./PageFooter";
 
 import type { ImageMeasurements } from "./Utils";
 
-export default class ImageViewer extends React.Component {
+export default class ImageViewer extends React.PureComponent {
   static propTypes = {
     images: PropTypes.array.isRequired,
     imageId: PropTypes.string.isRequired,
