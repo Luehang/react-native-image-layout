@@ -47,14 +47,13 @@ Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-nativ
 # :open_file_folder: Index
 
 ### 1.  [Install](#gem-install)
-### 2.  [iOS Usage Example](#tada-ios-usage-example)
-### 3.  [ANDROID Usage Example](#tada-android-usage-example)
-### 4.  [API](#nut_and_bolt-api)
-### 5.  :books: [Props](#books-props)
-### 6.  [Example Project](#clapper-example-project)
-### 7.  [Author](#santa-author)
-### 8.  [Contribute](#clap-contribute)
-### 9.  [License](#page_facing_up-license)
+### 2.  [Usage Example](#tada-usage-example)
+### 3.  [API](#nut_and_bolt-api)
+### 4.  :books: [Props](#books-props)
+### 5.  [Example Project](#clapper-example-project)
+### 6.  [Author](#santa-author)
+### 7.  [Contribute](#clap-contribute)
+### 8.  [License](#page_facing_up-license)
 
 <br/>
 <br/>
@@ -88,7 +87,7 @@ $ yarn add react-native-image-layout
 <br/>
 <br/>
 
-## :tada: iOS Usage Example
+## :tada: Usage Example
 
 Add an ``import`` to the top of the file.  At minimal, declare the ``ImageLayout`` component in the ``render()`` method providing an array of data for the ``images`` prop.
 
@@ -137,85 +136,6 @@ render() {
 <br/>
 <a href="https://luehangs.site/marketplace/product/RN%20Posting%20Demo%20App%20Kit"><img src="https://luehangs.site/images/lh-mobile-strip.jpg" alt="LH LABS"/></a>
 <br/>
-<br/>
-
-## :tada: ANDROID Usage Example
-
-:information_source: **REACT NATIVE IMAGE AND ANDROID BUG**
-
-<br/>
-
-**Provide a way to cache the images so there won't be any blank or missing images in the gallery.  A custom image component can be render for the imagePageComponent prop.  An example is given below which will work perfectly.**  This is not required but should be, because it will show a blank screen in the Gallery Swiper for missing images on Android.  This is normal behavior for the **Android** platform.
-
-<br/>
-
-### :small_blue_diamond: Install an Caching Module
-
-On the command line, type in the following and install the caching module.
-
-```bash
-$ npm install --save react-native-fast-image
-```
-
-Automatic link for native installation.
-
-```bash
-$ react-native link react-native-fast-image
-```
-
-:information_source: **If there are problems with the installation and start up of `react-native-fast-image`, follow the manual installation [here](https://github.com/DylanVann/react-native-fast-image/blob/master/docs/installation-manual.md).**
-
-<br/>
-
-### :small_blue_diamond: Import and Declare Components
-
-```javascript
-import ImageLayout from "react-native-image-layout";
-import FastImage from "react-native-fast-image";
-
-//...
-render() {
-    return (
-        <ImageLayout
-            imagePageComponent={(imageProps, imageDimensions, i) => {
-                return (
-                    <FastImage
-                        {...imageProps}
-                    />
-                );
-            }}
-            images={[
-                // Version *3.0.0 update (or greater versions): 
-                // Can be used with different image object fieldnames.
-                // Ex. source, source.uri, uri, URI, url, URL
-                { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg" },
-                { source: require("yourApp/image.png"),
-                    // IMPORTANT: It is REQUIRED for LOCAL IMAGES
-                    // to include a dimensions field with the
-                    // actual width and height of the image or
-                    // it will throw an error.
-                    dimensions: { width: 1080, height: 1920 } },
-                { source: { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-women-beauty-40901.jpg" } },
-                { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg",
-                    // Optional: Adding a dimensions field with
-                    // the actual width and height for REMOTE IMAGES
-                    // will help improve performance.
-                    dimensions: { width: 1080, height: 1920 } },
-                { URI: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg",
-                    // Version *2.0.0 update (or greater versions):
-                    // Optional: Does not require an id for each
-                    // image object, but is for best practices and
-                    // can be better for performance with the API.
-                    id: "blpccx4cn" },
-                { url: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg" },
-                { URL: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg" },
-            ]}
-        />
-    );
-}
-//...
-```
-
 <br/>
 
 ### :small_blue_diamond: Hint: Adding a Close Button for Gallery
