@@ -8,6 +8,7 @@ An easy and simple to use React Native component to render a custom masonry layo
 
 Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-image-layout) for a complete documentation.
 
+- Supports **medium lists** rendering.
 - Smart algorithm for eveningly laying out images.
 - Swipe up and down to close images with animations to original place. Support iOS.
 - Can be use with many fieldnames. `source`, `source.uri`, `uri`, `URI`, `url` or `URL`.
@@ -131,6 +132,8 @@ render() {
 }
 //...
 ```
+
+Android Note: Remote debugger should be turned off on Android.
 
 <br/>
 <br/>
