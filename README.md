@@ -288,16 +288,14 @@ $ cd react-native-image-layout/example/
 
 	1. check out the code
 	2. npm install
-    3. react-native link
-	4. npm run ios
+	3. npm run ios
 
 #### Android - Mac - Install & Run
 
 	1. check out the code
 	2. npm install
-    3. react-native link
-	4. emulator running in separate terminal
-	5. npm run android
+	3. emulator running in separate terminal
+	4. npm run android
 
 <br/>
 <br/>
