@@ -4,6 +4,7 @@ import {
   StyleSheet, Dimensions
 } from "react-native";
 import GallerySwiper from "react-native-gallery-swiper";
+import SmartGallery from "react-native-smart-gallery";
 import PropTypes from "prop-types";
 import ViewerBackground from "./ViewerBackground";
 import ScrollSpacerView from "./ScrollSpacerView";
@@ -310,13 +311,10 @@ export default class ImageViewer extends React.PureComponent {
             onClose={onClose}
           />
         }
-        <GallerySwiper
-          style={{ flex: 1, backgroundColor: "black" }}
+        <SmartGallery
           images={images}
-          initialPage={this.props.galleryInitialIndex}
+          index={this.props.galleryInitialIndex}
           errorComponent={this.props.errorPageComponent}
-          initialNumToRender={images.length + 1}
-          flatListProps={this.props.pagesFlatListProps}
           pageMargin={this.props.pageMargin}
           sensitiveScroll={this.props.sensitivePageScroll}
           onPageScrollStateChanged={this.props.onPageScrollStateChanged}
@@ -325,7 +323,7 @@ export default class ImageViewer extends React.PureComponent {
           onSingleTapConfirmed={this.props.onPageSingleTapConfirmed}
           onLongPress={this.props.onPageLongPress}
           removeClippedSubviews={this.props.removeClippedSubviewsPager}
-          imageComponent={(imageProps, imageDimensions, index) => {
+          renderItem={(imageProps, imageDimensions, index) => {
             if (!this.props.imagePageComponent) {
               return <Image {...imageProps} />;
             } else {
