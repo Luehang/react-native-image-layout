@@ -33,7 +33,7 @@ Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-image-
 
 #### :information_source: Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LH LABS](https://www.luehangs.site).
 
-Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-native-gallery-swiper).
+Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-native-gallery-swiper) & [`react-native-smart-gallery`](https://npmjs.com/package/react-native-smart-gallery).
 
 <br/>
 <br/>
@@ -154,7 +154,7 @@ _renderPageHeader = (image, index, onClose) => {
         <View>
             {/*
                 onClose params (third params) is a function
-                that will close the react-native-gallery-swiper.
+                that will close the gallery.
 
                 Swiping up and down animations for closing the
                 gallery is only compatible with iOS at
