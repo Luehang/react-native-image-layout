@@ -39,7 +39,31 @@ export default class ImageViewer extends React.PureComponent {
     onPageLongPress: PropTypes.func,
     renderPageHeader: PropTypes.func,
     renderPageFooter: PropTypes.func,
-    removeClippedSubviewsPager: PropTypes.bool
+
+    onDoubleTapConfirmed: PropTypes.func,
+    onDoubleTapStartReached: PropTypes.func,
+    onDoubleTapEndReached: PropTypes.func,
+    onPinchTransforming: PropTypes.func,
+    onPinchStartReached: PropTypes.func,
+    onPinchEndReached: PropTypes.func,
+    enableScale: PropTypes.bool,
+    enableTranslate: PropTypes.bool,
+    resizeMode: PropTypes.string,
+    enableResistance: PropTypes.bool,
+    resistantStrHorizontal: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.number,
+      PropTypes.string
+    ]),
+    resistantStrVertical: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.number,
+      PropTypes.string
+    ]),
+    onViewTransformed: PropTypes.func,
+    onTransformGestureReleased: PropTypes.func,
+    maxScale: PropTypes.bool,
+    maxOverScrollDistance: PropTypes.number,
   }
 
   constructor(props) {
@@ -219,7 +243,6 @@ export default class ImageViewer extends React.PureComponent {
             onSingleTapConfirmed={this.props.onPageSingleTapConfirmed}
             onLongPress={this.props.onPageLongPress}
             openImageMeasurements={openImageMeasurements}
-            removeClippedSubviews={this.props.removeClippedSubviewsPager}
             imageComponent={(imageProps, imageDimensions, index) => {
               if (!this.props.imagePageComponent) {
                 return <Image {...imageProps} />;
@@ -240,34 +263,58 @@ export default class ImageViewer extends React.PureComponent {
               this.props.onPageSelected &&
                 this.props.onPageSelected(index);
             }}
-            onPinchTransforming={(transform) => {
+            onPinchTransforming={(transform, i) => {
               if (transform.scale > 1 && this.state.closeScrollEnabled) {
                 this.setState({
                   closeScrollEnabled: false
                 });
               }
+              if (this.props.onPinchTransforming) {
+                this.props.onPinchTransforming(transform, i);
+              }
             }}
-            onPinchStartReached={() => {
+            onPinchStartReached={(transform, i) => {
               if (!this.state.closeScrollEnabled) {
                 this.setState({
                   closeScrollEnabled: true
                 });
               }
+              if (this.props.onPinchStartReached) {
+                this.props.onPinchStartReached(transform, i);
+              }
             }}
-            onDoubleTapStartReached={() => {
+            onDoubleTapStartReached={(transform, i) => {
               if (!this.state.closeScrollEnabled) {
                 this.setState({
                   closeScrollEnabled: true
                 });
               }
+              if (this.props.onDoubleTapStartReached) {
+                this.props.onDoubleTapStartReached(transform, i);
+              }
             }}
-            onDoubleTapEndReached={() => {
+            onDoubleTapEndReached={(transform, i) => {
               if (this.state.closeScrollEnabled) {
                 return this.setState({
                   closeScrollEnabled: false
                 });
               }
+              if (this.props.onDoubleTapEndReached) {
+                this.props.onDoubleTapEndReached(transform, i);
+              }
             }}
+            onDoubleTapConfirmed={this.props.onDoubleTapConfirmed}
+            onPinchEndReach={this.props.onPinchEndReach}
+            enableScale={this.props.enableScale}
+            enableTranslate={this.props.enableTranslate}
+            resizeMode={this.props.resizeMode}
+            enableResistance={this.props.enableResistance}
+            resistantStrHorizontal={this.props.resistantStrHorizontal}
+            resistantStrVertical={this.props.resistantStrVertical}
+            onViewTransformed={this.props.onViewTransformed}
+            onTransformGestureReleased={this.props.onTransformGestureReleased}
+            maxScale={this.props.maxScale}
+            maxOverScrollDistance={this.props.maxOverScrollDistance}
           />
           {
             renderPageFooter &&
@@ -343,6 +390,22 @@ export default class ImageViewer extends React.PureComponent {
             this.props.onPageSelected &&
               this.props.onPageSelected(index);
           }}
+          onDoubleTapConfirmed={this.props.onDoubleTapConfirmed}
+          onDoubleTapStartReached={this.props.onDoubleTapStartReached}
+          onDoubleTapEndReached={this.props.onDoubleTapEndReached}
+          onPinchTransforming={this.props.onPinchTransforming}
+          onPinchStartReached={this.props.onPinchStartReached}
+          onPinchEndReached={this.props.onPinchEndReached}
+          enableScale={this.props.enableScale}
+          enableTranslate={this.props.enableTranslate}
+          resizeMode={this.props.resizeMode}
+          enableResistance={this.props.enableResistance}
+          resistantStrHorizontal={this.props.resistantStrHorizontal}
+          resistantStrVertical={this.props.resistantStrVertical}
+          onViewTransformed={this.props.onViewTransformed}
+          onTransformGestureReleased={this.props.onTransformGestureReleased}
+          maxScale={this.props.maxScale}
+          maxOverScrollDistance={this.props.maxOverScrollDistance}
         />
         {
           renderPageFooter &&
