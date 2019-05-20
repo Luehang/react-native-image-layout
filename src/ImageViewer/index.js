@@ -7,7 +7,7 @@ import GallerySwiper from "react-native-gallery-swiper";
 import SmartGallery from "react-native-smart-gallery";
 import PropTypes from "prop-types";
 import ViewerBackground from "./ViewerBackground";
-import ScrollSpacerView from "./ScrollSpacerView";
+// import ScrollSpacerView from "./ScrollSpacerView";
 import ImageTransitionView from "./ImageTransitionView";
 import PageHeader from "./PageHeader";
 import PageFooter from "./PageFooter";
@@ -76,7 +76,7 @@ export default class ImageViewer extends React.PureComponent {
       dismissScrollProgress: new Animated.Value(Dimensions.get("window").height),
       initialImageMeasurements: null,
       openImageMeasurements: null,
-      closeScrollEnabled: true
+      // closeScrollEnabled: true
     };
   }
 
@@ -190,24 +190,24 @@ export default class ImageViewer extends React.PureComponent {
   ) {
     const { renderPageHeader, renderPageFooter, images, onClose } = this.props;
     return (
-      <Animated.ScrollView
-        ref={this._handleRef}
-        onScroll={Animated.event(
-          [
-            {
-              nativeEvent: {
-                contentOffset: { y: this.state.dismissScrollProgress }
-              }
-            }
-          ],
-          { useNativeDriver: true, listener: this._onScroll }
-        )}
-        scrollEventThrottle={1}
-        pagingEnabled={true}
-        showsVerticalScrollIndicator={false}
-        scrollEnabled={this.state.closeScrollEnabled}
-      >
-        <ScrollSpacerView width={width} height={height} />
+      // <Animated.ScrollView
+      //   ref={this._handleRef}
+      //   onScroll={Animated.event(
+      //     [
+      //       {
+      //         nativeEvent: {
+      //           contentOffset: { y: this.state.dismissScrollProgress }
+      //         }
+      //       }
+      //     ],
+      //     { useNativeDriver: true, listener: this._onScroll }
+      //   )}
+      //   scrollEventThrottle={1}
+      //   pagingEnabled={true}
+      //   showsVerticalScrollIndicator={false}
+      //   scrollEnabled={this.state.closeScrollEnabled}
+      // >
+      //   <ScrollSpacerView width={width} height={height} />
         <Animated.View
           style={{
             width: width.__getValue(),
@@ -265,41 +265,41 @@ export default class ImageViewer extends React.PureComponent {
                 this.props.onPageSelected(index);
             }}
             onPinchTransforming={(transform, i) => {
-              if (transform.scale > 1 && this.state.closeScrollEnabled) {
-                this.setState({
-                  closeScrollEnabled: false
-                });
-              }
+              // if (transform.scale > 1 && this.state.closeScrollEnabled) {
+              //   this.setState({
+              //     closeScrollEnabled: false
+              //   });
+              // }
               if (this.props.onPinchTransforming) {
                 this.props.onPinchTransforming(transform, i);
               }
             }}
             onPinchStartReached={(transform, i) => {
-              if (!this.state.closeScrollEnabled) {
-                this.setState({
-                  closeScrollEnabled: true
-                });
-              }
+              // if (!this.state.closeScrollEnabled) {
+              //   this.setState({
+              //     closeScrollEnabled: true
+              //   });
+              // }
               if (this.props.onPinchStartReached) {
                 this.props.onPinchStartReached(transform, i);
               }
             }}
             onDoubleTapStartReached={(transform, i) => {
-              if (!this.state.closeScrollEnabled) {
-                this.setState({
-                  closeScrollEnabled: true
-                });
-              }
+              // if (!this.state.closeScrollEnabled) {
+              //   this.setState({
+              //     closeScrollEnabled: true
+              //   });
+              // }
               if (this.props.onDoubleTapStartReached) {
                 this.props.onDoubleTapStartReached(transform, i);
               }
             }}
             onDoubleTapEndReached={(transform, i) => {
-              if (this.state.closeScrollEnabled) {
-                return this.setState({
-                  closeScrollEnabled: false
-                });
-              }
+              // if (this.state.closeScrollEnabled) {
+              //   return this.setState({
+              //     closeScrollEnabled: false
+              //   });
+              // }
               if (this.props.onDoubleTapEndReached) {
                 this.props.onDoubleTapEndReached(transform, i);
               }
@@ -327,8 +327,8 @@ export default class ImageViewer extends React.PureComponent {
             />
           }
         </Animated.View>
-        <ScrollSpacerView width={width} height={height} />
-      </Animated.ScrollView>
+      //   <ScrollSpacerView width={width} height={height} />
+      // </Animated.ScrollView>
     );
   }
 
