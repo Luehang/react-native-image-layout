@@ -233,6 +233,7 @@ export default class ImageViewer extends React.PureComponent {
             style={{ flex: 1, backgroundColor: "transparent" }}
             images={images}
             initialPage={this.props.galleryInitialIndex}
+            initialNumToRender={this.props.images.length}
             errorComponent={this.props.errorPageComponent}
             flatListProps={this.props.pagesFlatListProps}
             pageMargin={this.props.pageMargin}
