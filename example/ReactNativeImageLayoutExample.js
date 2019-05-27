@@ -60,19 +60,19 @@ export default class ReactNativeImageLayoutExample extends Component {
                         );
                     }}
                     images={testData}
-                    renderIndividualMasonryHeader={(data, index) => {
-                        return (
-                            <TouchableWithoutFeedback
-                                onPress={() => Linking.openURL("https://luehangs.site")}>
-                                <View style={[styles.masonryHeader, {width: data.masonryDimensions.width}]}>
-                                    <Image
-                                        source={{ uri: "https://luehangs.site/images/lue-hang2018-square.jpg" }}
-                                        style={styles.userPic} />
-                                    <Text style={styles.userName}>{data.title}</Text>
-                                </View>
-                            </TouchableWithoutFeedback>
-                        );
-                    }}
+                    // renderIndividualMasonryHeader={(data, index) => {
+                    //     return (
+                    //         <TouchableWithoutFeedback
+                    //             onPress={() => Linking.openURL("https://luehangs.site")}>
+                    //             <View style={[styles.masonryHeader, {width: data.masonryDimensions.width}]}>
+                    //                 <Image
+                    //                     source={{ uri: "https://luehangs.site/images/lue-hang2018-square.jpg" }}
+                    //                     style={styles.userPic} />
+                    //                 <Text style={styles.userName}>{data.title}</Text>
+                    //             </View>
+                    //         </TouchableWithoutFeedback>
+                    //     );
+                    // }}
                     renderPageHeader={(image, i, onClose) => {
                         return (
                             <View style={[styles.statusBarTop, styles.header, styles.pageHeader]}>
