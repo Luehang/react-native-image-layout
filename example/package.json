@@ -1,24 +1,26 @@
 {
-  "name": "react-native-image-layout-example",
+  "name": "ReactNativeImageLayoutExample",
   "version": "2.0.0",
+  "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "react-native start",
     "ios": "react-native run-ios",
     "android": "react-native run-android",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint ."
   },
   "dependencies": {
-    "react": "16.8.3",
-    "react-native": "0.59.8",
-    "react-native-image-layout": "^5.1.0"
+    "react": "16.8.6",
+    "react-native": "0.60.4",
+    "react-native-image-layout": "^5.1.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/runtime": "^7.4.4",
+    "@babel/core": "^7.5.5",
+    "@babel/runtime": "^7.5.5",
     "babel-jest": "^24.8.0",
     "jest": "^24.8.0",
-    "metro-react-native-babel-preset": "^0.54.1",
-    "react-test-renderer": "16.8.3"
+    "metro-react-native-babel-preset": "^0.55.0",
+    "react-test-renderer": "16.8.6"
   },
   "jest": {
     "preset": "react-native"
