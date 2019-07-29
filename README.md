@@ -8,7 +8,8 @@ An easy and simple to use React Native component to render a custom masonry layo
 
 Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-image-layout) for a complete documentation.
 
-- Supports **medium lists** rendering.
+- Supports **large lists** rendering.
+- Efficiently add more images without rerender.
 - Smart algorithm for eveningly laying out images.
 - Swipe up and down to close images with animations to original place. Support iOS. (Feature now disabled and stable feature will be released in future releases)
 - Can be use with many fieldnames. `source`, `source.uri`, `uri`, `URI`, `url` or `URL`.
@@ -136,6 +137,76 @@ render() {
 Android Note: Remote debugger should be turned off on Android.
 
 <br/>
+
+***
+<br/>
+
+## :tada: Efficiently Add More Images
+
+**Version \*5.2.0 update:** Without rerendering the images.
+
+```javascript
+import ImageLayout from "react-native-image-layout";
+
+//...
+/**
+ * Example method to add more images.
+ *
+ * @method addMoreImages
+ */
+addMoreImages(newImages) {
+    this.setState({
+        images: this.state.images.concat(newImages)
+    });
+}
+
+render() {
+    return (
+        <ImageLayout
+            images={this.state.images}
+        />
+    );
+}
+//...
+```
+
+<br/>
+
+***
+<br/>
+
+## :tada: Add New Images
+
+**Version \*5.2.0 update:** Rerendering the images.
+
+```javascript
+import ImageLayout from "react-native-image-layout";
+
+//...
+/**
+ * Example method to add new images.
+ *
+ * @method addNewImages
+ * @config Set react-native-image-layout's "rerender" prop to true.
+ */
+addNewImages(newImages) {
+    this.setState({
+        images: newImages
+    });
+}
+
+render() {
+    return (
+        <ImageLayout
+            rerender={true}
+            images={this.state.images}
+        />
+    );
+}
+//...
+```
+
+<br/>
 <br/>
 <a href="https://luehangs.site/marketplace/product/RN%20Posting%20Demo%20App%20Kit"><img src="https://luehangs.site/images/lh-mobile-strip.jpg" alt="LueHsoft LueH LABS Lue Hang luehang"/></a>
 <br/>
@@ -218,6 +289,7 @@ render() {
 | `initialNumInColsToRender`    | How many items to render in each column in the initial batch. | `number` | 1 |
 | `spacing`                     | Gutter size of the column. The spacing is a multiplier of 1% of the available view. | `number` | 1 |
 | `sorted`                      | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | `Boolean` | false |
+| `rerender`                    | Rerender the images when it changes. **Version \*5.2.0 update** | `boolean` | false |
 | `onLongPressImage`            | Executed after a long press on an item on the masonry. `({item: Object, index: number}) => void` **Version \*3.0.0 update**. | `Function` | |
 | `imageContainerStyle`         | The styles object which is added to the Image component. | `Object` | {} |
 | `renderIndividualMasonryHeader` | Custom function that is executed **ABOVE** each individual masonry image. `(item: Object, index: number) => ?React.Element` | `Function` | |
