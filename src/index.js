@@ -32,6 +32,7 @@ class ImageLayout extends React.PureComponent {
     imageContainerStyle: PropTypes.object,
     renderIndividualMasonryHeader: PropTypes.func,
     renderIndividualMasonryFooter: PropTypes.func,
+    rerender: PropTypes.bool,
 
     // Gallery props
     imagePageComponent: PropTypes.func,
@@ -165,6 +166,7 @@ class ImageLayout extends React.PureComponent {
           renderIndividualMasonryHeader={this.props.renderIndividualMasonryHeader}
           renderIndividualMasonryFooter={this.props.renderIndividualMasonryFooter}
           masonryFlatListColProps={this.props.masonryFlatListColProps}
+          rerender={this.props.rerender}
 
           onImageResolved={(resolvedImage, renderIndex) => {
             resolvedImage.id = Math.random().toString(36).substr(2, 9);
