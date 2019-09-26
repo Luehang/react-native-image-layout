@@ -73,6 +73,7 @@ class ImageLayout extends React.PureComponent {
     onTransformGestureReleased: PropTypes.func,
     maxScale: PropTypes.bool,
     maxOverScrollDistance: PropTypes.number,
+    enableVerticalExit: PropTypes.bool
   }
 
   static defaultProps = {
@@ -85,6 +86,7 @@ class ImageLayout extends React.PureComponent {
 		imageContainerStyle: {},
     onEndReachedThreshold: 25,
     sensitivePageScroll: false,
+    enableVerticalExit: true
   }
 
   static childContextTypes = {
@@ -256,6 +258,7 @@ class ImageLayout extends React.PureComponent {
                 onTransformGestureReleased={this.props.onTransformGestureReleased}
                 maxScale={this.props.maxScale}
                 maxOverScrollDistance={this.props.maxOverScrollDistance}
+                enableVerticalExit={this.props.enableVerticalExit}
               />
             </Modal>
           )}
