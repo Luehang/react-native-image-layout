@@ -9,7 +9,7 @@ An easy and simple to use React Native component to render a custom masonry layo
 Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-image-layout) for a complete documentation.
 
 - Supports **large lists** rendering.
-- Efficiently add more images without rerender.
+- Efficiently add more images without re-rendering.
 - Smart algorithm for eveningly laying out images.
 - Swipe up and down to close images with animations to original place. Support iOS. (Feature now disabled and stable feature will be released in future releases)
 - Can be use with many fieldnames. `source`, `source.uri`, `uri`, `URI`, `url` or `URL`.
@@ -214,6 +214,12 @@ render() {
 
 ### :small_blue_diamond: Hint: Adding a Close Button for Gallery
 
+| Props | Description | Type | Default |
+|-------|-------------|------|---------|
+| `enableVerticalExit` | Enable or disable exiting from swiping up or down in gallery. **Version \*5.3.0 update**. | `Boolean` | `true` |
+
+<br/>
+
 To select, callback and manipulate an image...
 
 ```javascript
@@ -338,6 +344,7 @@ render() {
 | `onViewTransformed` | Executed while being transformed in anyway (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*5.1.0 update**. | `Function` |
 | `onTransformGestureReleased` | Executed after a transform guesture released (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*5.1.0 update**. | `Function` |
 | `maxOverScrollDistance` | A number used to determine final scroll position triggered by fling (view transformer). **Version \*5.1.0 update**. | `number` | `20` |
+| `enableVerticalExit` | Enable or disable exiting from swiping up or down in gallery. **Version \*5.3.0 update**. | `Boolean` | `true` |
 
 <br/>
 <br/>
