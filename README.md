@@ -11,7 +11,7 @@ Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-image-
 - Supports **large lists** rendering.
 - Efficiently add more images without re-rendering.
 - Smart algorithm for eveningly laying out images.
-- Swipe up and down to close images with animations to original place. Support iOS. (Feature now disabled and stable feature will be released in future releases)
+- Swipe up and down to close images with animations to original place. Supports iOS and Android.
 - Can be use with many fieldnames. `source`, `source.uri`, `uri`, `URI`, `url` or `URL`.
 - Support for rendering all local and remote images with no missing images.
 - Support for dynamic device rotation.
