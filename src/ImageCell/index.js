@@ -160,7 +160,6 @@ export default class ImageCell extends React.PureComponent {
 				{
 					width: data.masonryDimensions.width,
 					height: data.masonryDimensions.height,
-					backgroundColor: "lightgrey",
 					...imageContainerStyle
 				},
 				{ opacity: this.state.opacity }
