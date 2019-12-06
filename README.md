@@ -425,6 +425,8 @@ Contributors will be posted here.
 
 <br/>
 
+<a href="https://www.instagram.com/kimelionipan/"><img src="https://avatars2.githubusercontent.com/u/14973984?s=460&v=4"></a>
+
 ### :baby: Beginners
 
 Not sure where to start, or a beginner? Take a look at the [issues page](https://github.com/Luehang/react-native-image-layout/issues).
