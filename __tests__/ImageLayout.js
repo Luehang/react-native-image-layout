@@ -13,6 +13,6 @@ test("Image Layout renders correctly", () => {
 
     const scrollView = imageLayout.children[0];
 
-    expect(scrollView.type).toBe("RCTScrollView");
+    expect(scrollView.type).toBe("View");
     expect(imageLayout.props.images.length).toBeGreaterThan(0);
 });
