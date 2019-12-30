@@ -53,9 +53,9 @@
   ],
   "dependencies": {
     "prop-types": "^15.6.2",
-    "react-native-smart-gallery": "^1.0.3",
-    "react-native-gallery-swiper": "^1.23.1",
-    "react-native-masonry-list": "^2.13.0"
+    "react-native-smart-gallery": "^1.1.1",
+    "react-native-gallery-swiper": "^1.24.1",
+    "react-native-masonry-list": "^2.13.1"
   },
   "peerDependencies": {
     "react": "*",
