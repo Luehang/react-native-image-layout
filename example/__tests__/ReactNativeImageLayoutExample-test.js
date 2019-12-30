@@ -1,10 +1,10 @@
-import 'react-native';
-import React from 'react';
-import ReactNativeImageLayoutExample from '../ReactNativeImageLayoutExample';
+import "react-native";
+import React from "react";
+import ReactNativeImageLayoutExample from "../ReactNativeImageLayoutExample";
 
 // Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
+import renderer from "react-test-renderer";
 
-it('renders correctly', () => {
+it("renders correctly", () => {
   renderer.create(<ReactNativeImageLayoutExample />);
 });

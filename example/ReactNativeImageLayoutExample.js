@@ -151,14 +151,14 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center"
     },
-    masonryHeader: {
-        position: "absolute",
-        zIndex: 10,
-        flexDirection: "row",
-        padding: 5,
-        alignItems: "center",
-        backgroundColor: "rgba(150,150,150,0.4)"
-    },
+    // masonryHeader: {
+    //     position: "absolute",
+    //     zIndex: 10,
+    //     flexDirection: "row",
+    //     padding: 5,
+    //     alignItems: "center",
+    //     backgroundColor: "rgba(150,150,150,0.4)"
+    // },
     pageHeader: {
         flexDirection: "row",
         alignItems: "center"
@@ -191,15 +191,15 @@ const styles = StyleSheet.create({
         fontSize: 10,
         color: "grey"
     },
-    userPic: {
-        height: 20,
-        width: 20,
-        borderRadius: 10,
-        marginRight: 10
-    },
-    userName: {
-        color: "#616161"
-    },
+    // userPic: {
+    //     height: 20,
+    //     width: 20,
+    //     borderRadius: 10,
+    //     marginRight: 10
+    // },
+    // userName: {
+    //     color: "#616161"
+    // },
     whiteText: {
         fontWeight: "bold",
         color: "#fafafa"

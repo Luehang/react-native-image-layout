@@ -71,7 +71,6 @@ const data = [
     {
         uri: "https://luehangs.site/pic-chat-app-images/hair-girl-female-model.jpg",
         title: "www.luehangs.site",
-        description: "https://luehangs.site",
         description: "Test 11",
         // dimensions: { width: 1080, height: 1920 }
     },
