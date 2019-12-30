@@ -10,6 +10,7 @@ import {
     Image,
 } from "react-native";
 import ImageLayout from "react-native-image-layout";
+// import ImageLayout from "./src"
 
 import testData from "./data";
 
@@ -20,12 +21,38 @@ const platform = Platform.OS;
 const backIcon = require("./assets/arrow_back_ios_white_36dp.png");
 
 export default class ReactNativeImageLayoutExample extends Component {
+    state = {
+        data: testData
+    }
+
+    // componentDidMount() {
+    //     setTimeout(() => {
+    //         this.setState({
+    //             data: this.state.data.concat([
+    //                 {
+    //                     uri: "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    //                     // id: idGenerator(),
+    //                     title: "www.luehangs.site",
+    //                     // dimensions: { width: 1080, height: 1920 },
+    //                 },
+    //                 {
+    //                     uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRBu7qUznng_t9q5wEkW4obHtb-lbgqXpU0y4Gu77Su30QteHK",
+    //                     // id: idGenerator(),
+    //                     title: "www.luehangs.site",
+    //                     // dimensions: { width: 1080, height: 1920 },
+    //                 }
+    //             ])
+    //         });
+    //     }, 6000);
+    // }
+
     render() {
         return (
             <View
                 style={styles.container}
             >
                 <ImageLayout
+                    // rerender={true}
                     renderMainHeader={() => {
                         return (
                             <View>
@@ -59,7 +86,7 @@ export default class ReactNativeImageLayoutExample extends Component {
                             </View>
                         );
                     }}
-                    images={testData}
+                    images={this.state.data}
                     // renderIndividualMasonryHeader={(data, index) => {
                     //     return (
                     //         <TouchableWithoutFeedback
