@@ -36,7 +36,7 @@ export default class ImageCell extends React.PureComponent {
 		this._readyToMeasure = false;
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.context.onSourceContext(
 			this.props.imageId,
 			this.measurePhoto,

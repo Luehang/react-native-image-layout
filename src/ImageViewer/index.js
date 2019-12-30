@@ -80,9 +80,16 @@ export default class ImageViewer extends React.PureComponent {
     this._measurePhotoSize();
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
+    this.state.openProgress &&
+      Animated.timing(this.state.openProgress, {
+        toValue: 1,
+        duration: 500,
+        easing: Easing.inOut(Easing.poly(3)),
+        useNativeDriver: true
+      }).start(() => this.setState({ openProgress: null }));
     // Measure photo on horizontal scroll change
-    if (this.props.imageId !== nextProps.imageId) {
+    if (prevProps.imageId !== this.props.imageId) {
       // TOOD: add opacity effect
       this.setState(
         {
@@ -92,16 +99,6 @@ export default class ImageViewer extends React.PureComponent {
         () => this._measurePhotoSize()
       );
     }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    this.state.openProgress &&
-      Animated.timing(this.state.openProgress, {
-        toValue: 1,
-        duration: 500,
-        easing: Easing.inOut(Easing.poly(3)),
-        useNativeDriver: true
-      }).start(() => this.setState({ openProgress: null }));
   }
 
   _getTransitionProgress = () => {
