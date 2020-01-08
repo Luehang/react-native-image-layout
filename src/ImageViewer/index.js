@@ -1,7 +1,6 @@
 import React from "react";
 import {
-  Easing, Platform, Animated, Image,
-  Dimensions
+  Platform, Animated, Image, Dimensions
 } from "react-native";
 import GallerySwiper from "react-native-gallery-swiper";
 import SmartGallery from "react-native-smart-gallery";
@@ -9,8 +8,6 @@ import PropTypes from "prop-types";
 import DefaultHeader from "./DefaultHeader";
 import PageHeader from "./PageHeader";
 import PageFooter from "./PageFooter";
-
-import type { ImageMeasurements } from "./../utils";
 
 export default class ImageViewer extends React.PureComponent {
   static propTypes = {
@@ -20,7 +17,6 @@ export default class ImageViewer extends React.PureComponent {
     galleryIndex: PropTypes.number.isRequired,
     onClose: PropTypes.func.isRequired,
     onChangePhoto: PropTypes.func.isRequired,
-    getSourceContext: PropTypes.func.isRequired,
 
     // Gallery props
     imagePageComponent: PropTypes.func,
@@ -69,90 +65,9 @@ export default class ImageViewer extends React.PureComponent {
     this.state = {
       width: new Animated.Value(Dimensions.get("window").width),
       height: new Animated.Value(Dimensions.get("window").height),
-      openProgress: new Animated.Value(0),
-      dismissProgress: null,
-      dismissScrollProgress: new Animated.Value(Dimensions.get("window").height),
-      initialImageMeasurements: null,
-      openImageMeasurements: null
     };
   }
 
-  componentDidMount() {
-    this._measurePhotoSize();
-  }
-
-  componentDidUpdate(prevProps) {
-    this.state.openProgress &&
-      Animated.timing(this.state.openProgress, {
-        toValue: 1,
-        duration: 500,
-        easing: Easing.inOut(Easing.poly(3)),
-        useNativeDriver: true
-      }).start(() => this.setState({ openProgress: null }));
-    // Measure photo on horizontal scroll change
-    if (prevProps.imageId !== this.props.imageId) {
-      // TOOD: add opacity effect
-      this.setState(
-        {
-          initialImageMeasurements: null,
-          openImageMeasurements: null
-        },
-        () => this._measurePhotoSize()
-      );
-    }
-  }
-
-  _getTransitionProgress = () => {
-    const gestureDismissProgress =
-      this.state.dismissScrollProgress &&
-      Platform.OS === "ios" &&
-      this.state.dismissScrollProgress.interpolate({
-        inputRange: [
-          0,
-          this.state.height.__getValue(),
-          this.state.height.__getValue() * 2
-        ],
-        outputRange: [0.02, 1, 0.02]
-      });
-    return (
-      this.state.openProgress || gestureDismissProgress || new Animated.Value(1)
-    );
-  }
-
-  _measurePhotoSize = async () => {
-    const { measurer, imageSizeMeasurer } = this.props.getSourceContext(
-      this.props.imageId
-    );
-    const imageSize: {
-      width: number,
-      height: number
-    } = await imageSizeMeasurer();
-    const imageAspectRatio: number = imageSize.width / imageSize.height;
-    const height: number = this.state.height.__getValue();
-    const width: number = this.state.width.__getValue();
-    const screenAspectRatio: number = width / height;
-    let finalWidth: number = width;
-    let finalHeight: number = width / imageAspectRatio;
-    if (imageAspectRatio - screenAspectRatio < 0) {
-      finalHeight = height;
-      finalWidth = height * imageAspectRatio;
-    }
-    const finalX: number = (width - finalWidth) / 2;
-    const finalY: number = (height - finalHeight) / 2;
-    const openImageMeasurements: ImageMeasurements = {
-      width: finalWidth,
-      height: finalHeight,
-      x: finalX,
-      y: finalY,
-      scale: finalWidth / width
-    };
-    // Measure initial photo size
-    const initialImageMeasurements: ImageMeasurements = await measurer();
-    this.setState({
-      initialImageMeasurements,
-      openImageMeasurements
-    });
-  }
 
   _handleVerticalSwipe = (transform) => {
     const { scale, translateY: y } = transform;
@@ -162,22 +77,16 @@ export default class ImageViewer extends React.PureComponent {
 	}
 
   _renderIOSVerticalScrollView(
-    width: Animated.Value,
-    height: Animated.Value,
-    imageSource: ?ImageSource,
-    openImageMeasurements: ?ImageMeasurements,
-    transitionProgress: any
+    width,
+    height,
+    imageSource
   ) {
     const { renderPageHeader, renderPageFooter, images, onClose } = this.props;
     return (
       <Animated.View
         style={{
           width: width.__getValue(),
-          height: height.__getValue(),
-          opacity: transitionProgress.interpolate({
-            inputRange: [0.998, 0.999],
-            outputRange: [0, 1]
-          })
+          height: height.__getValue()
         }}
       >
         {
@@ -206,7 +115,6 @@ export default class ImageViewer extends React.PureComponent {
           scrollViewStyle={this.props.pageScrollViewStyle}
           onSingleTapConfirmed={this.props.onPageSingleTapConfirmed}
           onLongPress={this.props.onPageLongPress}
-          openImageMeasurements={openImageMeasurements}
           imageComponent={(imageProps, imageDimensions, index) => {
             if (!this.props.imagePageComponent) {
               return <Image {...imageProps} />;
@@ -216,14 +124,6 @@ export default class ImageViewer extends React.PureComponent {
           }}
           onPageSelected={(index) => {
             this.props.onChangePhoto(images[index].id, index);
-            if (index !== this.props.galleryInitialIndex) {
-              this.setState(
-                {
-                  initialImageMeasurements: null,
-                  openImageMeasurements: null
-                }
-              );
-            }
             this.props.onPageSelected &&
               this.props.onPageSelected(index);
           }}
@@ -281,21 +181,16 @@ export default class ImageViewer extends React.PureComponent {
   }
 
   _renderAndroidVerticalView(
-    width: Animated.Value,
-    height: Animated.Value,
-    imageSource: ?ImageSource,
-    transitionProgress: any
+    width,
+    height,
+    imageSource
   ) {
     const { renderPageHeader, renderPageFooter, images, onClose } = this.props;
     return (
       <Animated.View
         style={{
           width: width.__getValue(),
-          height: height.__getValue(),
-          opacity: transitionProgress.interpolate({
-            inputRange: [0.998, 0.999],
-            outputRange: [0, 1]
-          })
+          height: height.__getValue()
         }}
       >
         {
@@ -331,14 +226,6 @@ export default class ImageViewer extends React.PureComponent {
           }}
           onPageSelected={(index) => {
             this.props.onChangePhoto(images[index].id, index);
-            if (index !== this.props.galleryInitialIndex) {
-              this.setState(
-                {
-                  initialImageMeasurements: null,
-                  openImageMeasurements: null
-                }
-              );
-            }
             this.props.onPageSelected &&
               this.props.onPageSelected(index);
           }}
@@ -382,26 +269,21 @@ export default class ImageViewer extends React.PureComponent {
   render() {
     const {
       width,
-      height,
-      openImageMeasurements,
+      height
     } = this.state;
     const imageSource = this.props.images[this.props.galleryIndex];
-    const transitionProgress: any = this._getTransitionProgress();
     if (Platform.OS === "ios") {
       return this._renderIOSVerticalScrollView(
         width,
         height,
-        imageSource,
-        openImageMeasurements,
-        transitionProgress
+        imageSource
       );
     }
     return (
       this._renderAndroidVerticalView(
         width,
         height,
-        imageSource,
-        transitionProgress
+        imageSource
       )
     );
   }

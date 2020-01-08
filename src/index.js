@@ -6,14 +6,9 @@ import {
   View
 } from "react-native";
 import MasonryList from "react-native-masonry-list";
-import ImageCell from "./ImageCell";
 import ImageViewer from "./ImageViewer";
 
 class ImageLayout extends React.PureComponent {
-  // TODO: full animations for Android
-  _imageMeasurers: { [imageId: string]: () => void }
-  _imageSizeMeasurers: { [imageId: string]: () => void }
-
   static propTypes = {
     images: PropTypes.arrayOf(
       PropTypes.object.isRequired
@@ -89,10 +84,6 @@ class ImageLayout extends React.PureComponent {
     enableVerticalExit: true
   }
 
-  static childContextTypes = {
-    onSourceContext: PropTypes.func.isRequired
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -101,28 +92,6 @@ class ImageLayout extends React.PureComponent {
       galleryInitialIndex: 0,
       galleryIndex: 0,
       imageId: ""
-    };
-    this._imageMeasurers = {};
-    this._imageSizeMeasurers = {};
-  }
-
-  getChildContext() {
-    return { onSourceContext: this._onSourceContext };
-  }
-
-  _onSourceContext = (
-    imageId,
-    cellMeasurer,
-    imageMeasurer
-  ) => {
-    this._imageMeasurers[imageId] = cellMeasurer;
-    this._imageSizeMeasurers[imageId] = imageMeasurer;
-  }
-
-  _getSourceContext = (imageId) => {
-    return {
-      measurer: this._imageMeasurers[imageId],
-      imageSizeMeasurer: this._imageSizeMeasurers[imageId]
     };
   }
 
@@ -169,50 +138,26 @@ class ImageLayout extends React.PureComponent {
           renderIndividualMasonryFooter={this.props.renderIndividualMasonryFooter}
           masonryFlatListColProps={this.props.masonryFlatListColProps}
           rerender={this.props.rerender}
-
-          onImageResolved={(resolvedImage, renderIndex) => {
+          onImageResolved={(resolvedImage) => {
             resolvedImage.id = Math.random().toString(36).substring(7);
-            if (renderIndex !== 0) {
-              this.setState((state) => {
-                const calculatedData = state.resolvedData.concat(resolvedImage);
-                return {
-                  resolvedData: calculatedData
-                };
-              });
-            } else {
-              this.setState({
-                resolvedData: [resolvedImage]
-              });
-            }
             return resolvedImage;
           }}
-
-          completeCustomComponent={({ source, style, data}) => {
-            return (
-              <ImageCell
-                data={data}
-                imageId={data.id}
-                source={source}
-                onPressImage={this.openImageViewer}
-                onLongPressImage={this.props.onLongPressImage}
-                shouldHideDisplayedImage={
-                  this.state.displayImageViewer
-                  && this.state.imageId === data.id
-                }
-
-                renderIndividualMasonryHeader={this.props.renderIndividualMasonryHeader}
-                renderIndividualMasonryFooter={this.props.renderIndividualMasonryFooter}
-                imageContainerStyle={this.props.imageContainerStyle}
-              />
-            );
+          onImagesResolveEnd={(resolvedImages) => {
+            const resolvedData = resolvedImages.reduce((acc, curr) => acc.concat(curr)).sort(function (a, b) {
+              return a.index - b.index;
+            });
+            this.setState({
+              resolvedData: resolvedData
+            });
           }}
+          onPressImage={(data, i) => this.openImageViewer(data.id, i)}
         />
         {
           this.props.renderMainFooter &&
             this.props.renderMainFooter()
         }
         {this.state.displayImageViewer &&
-          this.state.imageId &&
+          this.state.imageId ?
           (
             <Modal
               visible={this.state.displayImageViewer && this.state.imageId ? true : false}
@@ -226,7 +171,6 @@ class ImageLayout extends React.PureComponent {
                 galleryIndex={this.state.galleryIndex}
                 onClose={this.closeImageViewer}
                 onChangePhoto={this.onChangePhoto}
-                getSourceContext={this._getSourceContext}
                 displayImageViewer={this.state.displayImageViewer}
 
                 imagePageComponent={this.props.imagePageComponent}
@@ -261,7 +205,7 @@ class ImageLayout extends React.PureComponent {
                 enableVerticalExit={this.props.enableVerticalExit}
               />
             </Modal>
-          )}
+          ) : null}
       </View>
     );
   }
