@@ -6,10 +6,11 @@ import {
 import GallerySwiper from "react-native-gallery-swiper";
 import SmartGallery from "react-native-smart-gallery";
 import PropTypes from "prop-types";
+import DefaultHeader from "./DefaultHeader";
 import PageHeader from "./PageHeader";
 import PageFooter from "./PageFooter";
 
-import type { ImageMeasurements } from "./Utils";
+import type { ImageMeasurements } from "./../utils";
 
 export default class ImageViewer extends React.PureComponent {
   static propTypes = {
@@ -180,13 +181,16 @@ export default class ImageViewer extends React.PureComponent {
         }}
       >
         {
-          renderPageHeader &&
-          <PageHeader
-            renderPageHeader={renderPageHeader}
-            image={imageSource}
-            galleryIndex={imageSource.index}
-            onClose={onClose}
-          />
+          renderPageHeader
+            ? <PageHeader
+              renderPageHeader={renderPageHeader}
+              image={imageSource}
+              galleryIndex={imageSource.index}
+              onClose={onClose}
+            />
+            : <DefaultHeader
+              onClose={onClose}
+            />
         }
         <GallerySwiper
           style={{ flex: 1, backgroundColor: "black" }}
@@ -295,13 +299,16 @@ export default class ImageViewer extends React.PureComponent {
         }}
       >
         {
-          renderPageHeader &&
-          <PageHeader
-            renderPageHeader={renderPageHeader}
-            image={imageSource}
-            galleryIndex={imageSource.index}
-            onClose={onClose}
-          />
+          renderPageHeader
+            ? <PageHeader
+              renderPageHeader={renderPageHeader}
+              image={imageSource}
+              galleryIndex={imageSource.index}
+              onClose={onClose}
+            />
+            : <DefaultHeader
+              onClose={onClose}
+            />
         }
         <SmartGallery
           images={images}

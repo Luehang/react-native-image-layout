@@ -171,7 +171,7 @@ class ImageLayout extends React.PureComponent {
           rerender={this.props.rerender}
 
           onImageResolved={(resolvedImage, renderIndex) => {
-            resolvedImage.id = Math.random().toString(36).substr(2, 9);
+            resolvedImage.id = Math.random().toString(36).substring(7);
             if (renderIndex !== 0) {
               this.setState((state) => {
                 const calculatedData = state.resolvedData.concat(resolvedImage);
