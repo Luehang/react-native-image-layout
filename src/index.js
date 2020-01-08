@@ -13,6 +13,8 @@ class ImageLayout extends React.PureComponent {
     images: PropTypes.arrayOf(
       PropTypes.object.isRequired
     ).isRequired,
+    onEndReached: PropTypes.func,
+    onEndReachedThreshold: PropTypes.number,
 
     // Masonry props
     columns: PropTypes.number,
@@ -79,7 +81,7 @@ class ImageLayout extends React.PureComponent {
 		initialNumInColsToRender: 1,
 		sorted: false,
 		imageContainerStyle: {},
-    onEndReachedThreshold: 25,
+    onEndReachedThreshold: 0.8,
     sensitivePageScroll: false,
     enableVerticalExit: true
   }
@@ -151,6 +153,8 @@ class ImageLayout extends React.PureComponent {
             });
           }}
           onPressImage={(data, i) => this.openImageViewer(data.id, i)}
+          onEndReached={this.props.onEndReached}
+          onEndReachedThreshold={this.props.onEndReachedThreshold}
         />
         {
           this.props.renderMainFooter &&
@@ -203,6 +207,8 @@ class ImageLayout extends React.PureComponent {
                 maxScale={this.props.maxScale}
                 maxOverScrollDistance={this.props.maxOverScrollDistance}
                 enableVerticalExit={this.props.enableVerticalExit}
+                onEndReached={this.props.onEndReached}
+                onEndReachedThreshold={this.props.onEndReachedThreshold}
               />
             </Modal>
           ) : null}
