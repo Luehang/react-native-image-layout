@@ -212,67 +212,6 @@ render() {
 <br/>
 <br/>
 
-### :small_blue_diamond: Hint: Adding a Close Button for Gallery
-
-| Props | Description | Type | Default |
-|-------|-------------|------|---------|
-| `enableVerticalExit` | Enable or disable exiting from swiping up or down in gallery. **Version \*5.3.0 update**. | `Boolean` | `true` |
-
-<br/>
-
-To select, callback and manipulate an image...
-
-```javascript
-import ImageLayout from "react-native-image-layout";
-//...
-
-//...
-_renderPageHeader = (image, index, onClose) => {
-    // Individual image object data.
-    console.log(image);
-    return (
-        <View>
-            {/*
-                onClose params (third params) is a function
-                that will close the gallery.
-
-                Swiping up and down animations for closing the
-                gallery is only compatible with iOS at
-                the moment.  It will be compatible with
-                Android in future releases.
-            */}
-            <TouchableWithoutFeedback onPress={() => {onClose();}}>
-                <Image
-                    source={backIcon}
-                    style={{marginLeft: 10, height: 30, width: 30}}
-                />
-            </TouchableWithoutFeedback>
-            <Text>{image.filename}</Text>
-        </View>
-    );
-}
-
-render() {
-    return (
-        <ImageLayout
-            renderPageHeader={this._renderPageHeader}
-            images={[
-                { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg" },
-                { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg" },
-                { uri: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg" },
-            ]}
-        />
-    );
-}
-//...
-```
-
-<br/>
-<br/>
-<a href="https://luehangs.site/marketplace/product/RN%20Posting%20Demo%20App%20Kit"><img src="https://luehangs.site/images/lh-mobile-strip.jpg" alt="LueHsoft LueH LABS Lue Hang luehang"/></a>
-<br/>
-<br/>
-
 ## :nut_and_bolt: API
 
 ``<ImageLayout />`` component accepts the following props...
