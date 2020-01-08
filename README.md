@@ -11,16 +11,17 @@ Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-image-
 - Supports **large lists** rendering.
 - Efficiently add more images without re-rendering.
 - Smart algorithm for eveningly laying out images.
-- Swipe up and down to close images with animations to original place. Supports iOS and Android.
+- Swipe up and down to close images.
 - Can be use with many fieldnames. `source`, `source.uri`, `uri`, `URI`, `url` or `URL`.
 - Support for rendering all local and remote images with no missing images.
 - Support for dynamic device rotation.
-- Easily and highly customizable.
 - Includes guestures and important event listeners for pan, pinch, single tap and double tap.
 - Includes zoom mode.
+- Pull to Refresh.
+- Scroll loading.
 - Easily customizable.
-- Intelligent scrolling detection to cushion rough swipe guestures.
-- Supports both iOS and Android.
+- Intelligent scroll detection to cushion rough swipe guestures.
+- Supports iOS and Android.
 
 <br/>
 <br/>
@@ -33,7 +34,7 @@ Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-image-
 
 ![react-native-image-layout](https://www.luehangs.site/videos/react-native-image-layout-demo.gif)
 
-#### :information_source: Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LH LABS](https://www.luehangs.site).
+#### :information_source: Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LueHsoft](https://www.luehangs.site).
 
 Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-native-gallery-swiper) & [`react-native-smart-gallery`](https://npmjs.com/package/react-native-smart-gallery).
 
@@ -107,12 +108,18 @@ render() {
                 // Can be used with different image object fieldnames.
                 // Ex. source, source.uri, uri, URI, url, URL
                 { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg" },
-                { source: require("yourApp/image.png"),
-                    // IMPORTANT: It is REQUIRED for LOCAL IMAGES
-                    // to include a dimensions field with the
-                    // actual width and height of the image or
-                    // it will throw an error.
-                    dimensions: { width: 1080, height: 1920 } },
+                // IMPORTANT: It is REQUIRED for LOCAL IMAGES
+                // to include a dimensions field with the
+                // actual width and height of the image or
+                // it will throw an error.
+                // { source: require("yourApp/image.png"),
+                //     dimensions: { width: 1080, height: 1920 }
+                // },
+                // "width" & "height" is an alternative to the dimensions
+                // field that will also be acceptable.
+                // { source: require("yourApp/image.png"),
+                //     width: 1080,
+                //     height: 1920 },
                 { source: { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-women-beauty-40901.jpg" } },
                 { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg",
                     // Optional: Adding a dimensions field with
@@ -128,6 +135,10 @@ render() {
                 { url: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg" },
                 { URL: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg" },
             ]}
+            // Version *5.7.0 update
+            // onEndReached={() => {
+            //     // add more images when scroll reaches end
+            // }}
         />
     );
 }
@@ -164,6 +175,10 @@ render() {
     return (
         <ImageLayout
             images={this.state.images}
+            {/* Version *5.7.0 update */}
+            onEndReached={() => {
+                this.addMoreImages(moreImages);
+            }}
         />
     );
 }
@@ -235,13 +250,15 @@ render() {
 | `spacing`                     | Gutter size of the column. The spacing is a multiplier of 1% of the available view. | `number` | 1 |
 | `sorted`                      | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | `Boolean` | false |
 | `rerender`                    | Rerender the images when it changes. **Version \*5.2.0 update** | `boolean` | false |
-| `onLongPressImage`            | Executed after a long press on an item on the masonry. `({item: Object, index: number}) => void` **Version \*3.0.0 update**. | `Function` | |
-| `imageContainerStyle`         | The styles object which is added to the Image component. | `Object` | {} |
-| `renderIndividualMasonryHeader` | Custom function that is executed **ABOVE** each individual masonry image. `(item: Object, index: number) => ?React.Element` | `Function` | |
-| `renderIndividualMasonryFooter` | Custom function that is executed **BELOW** each individual masonry image. `(item: Object, index: number) => ?React.Element` | `Function` | |
+| `onLongPressImage`            | Executed after a long press on an item on the masonry. `({item: object, index: number}) => void` **Version \*3.0.0 update**. | `Function` | |
+| `imageContainerStyle`         | The styles object which is added to the Image component. | `object` | {} |
+| `renderIndividualMasonryHeader` | Custom function that is executed **ABOVE** each individual masonry image. `(item: object, index: number) => ?React.Element` | `Function` | |
+| `renderIndividualMasonryFooter` | Custom function that is executed **BELOW** each individual masonry image. `(item: object, index: number) => ?React.Element` | `Function` | |
 | `renderMainHeader`              | Custom function to render a header above the MasonryList. `() => void` | `Function` | |
 | `renderMainFooter`              | Custom function to render a footer below the MasonryList. `() => void` | `Function` | |
-| `masonryFlatListColProps`       | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | `Object` | {} |
+| `masonryFlatListColProps`       | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | `object` | {} |
+| `onEndReached`                | Called once when the scroll position gets within `onEndReachedThreshold` of the rendered content. `() => void` **Version \*5.7.0 update** | `function` | |
+| `onEndReachedThreshold`       | How far from the end (in units of visible length of the list) the bottom edge of the list must be from the end of the content to trigger the `onEndReached` callback. Thus a value of 0.5 will trigger `onEndReached` when the end of the content is within half the visible length of the list. **Version \*5.7.0 update** | `number` | 0.8 |
 
 <br/>
 <br/>
@@ -257,15 +274,15 @@ render() {
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
 | `imagePageComponent`          | Custom function to render the images for gallery.  `(imageProps: { imageLoaded: Boolean, source: object, image: object, style: Array<object>, resizeMode: string, capInsets: object, onLoadStart: Function, onLoad: Function, ...extras }, imageDimensions: {width: number, height: number}, index: number) => React.Element` **index params included in Version \*3.0.0 update** | `Function` | `<Image/>` component |
 | `errorPageComponent`          | Custom function to render the page of an image in gallery that couldn't be displayed. | `Function` | `<View/>` with stylized error |
-| `renderPageHeader`            | Custom function to render gallery page header.  `(item: Object, index: number, onClose: Function) => ?React.Element` The `onClose` function is use to close gallery pages and return to the masonry layout. | `Function` | |
-| `renderPageFooter`            | Custom function to render gallery page footer.  `(item: Object, index: number, onClose: Function) => ?React.Element` The `onClose` function is use to close gallery pages and return to the masonry layout. | `Function` | |
-| `pagesFlatListProps`          | Props to be passed to the underlying `FlatList` gallery.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist) | `Object` | {windowSize: 3} |
+| `renderPageHeader`            | Custom function to render gallery page header.  `(item: object, index: number, onClose: Function) => ?React.Element` The `onClose` function is use to close gallery pages and return to the masonry layout. | `Function` | |
+| `renderPageFooter`            | Custom function to render gallery page footer.  `(item: object, index: number, onClose: Function) => ?React.Element` The `onClose` function is use to close gallery pages and return to the masonry layout. | `Function` | |
+| `pagesFlatListProps`          | Props to be passed to the underlying `FlatList` gallery.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist) | `object` | {windowSize: 3} |
 | `pageMargin`                  | Blank space to show between images in gallery. | `number` | 0 |
 | `sensitivePageScroll`         | Whether to enable an intelligent detection to detect rough and fast swiping gestures in order to "cushion" or slow down a swipe at the end. **Version \*3.0.0 update**. | `Boolean` | `false` |
 | `onPageSelected`              | Fired with the index of page that has been selected in gallery. `(index: number) => void` | `Function` | |
 | `onPageScrollStateChanged`    | Called when page scrolling state has changed in gallery.  See [scroll state and events...](#scroll-state-and-events) `(state: string) => void` | `Function` | |
 | `onPageScroll`                | Scroll event for page gallery.  See [scroll state and events...](#scroll-state-and-events) `(event: { position: number, offset: number, fraction: number }) => void` | `Function` | |
-| `pageScrollViewStyle`         | Custom style for the `FlatList` component for gallery. | `Object` | {} |
+| `pageScrollViewStyle`         | Custom style for the `FlatList` component for gallery. | `object` | {} |
 | `onPageSingleTapConfirmed`    | Fired after a single tap on page in gallery. `(index: number) => void` | `Function` | |
 | `onPageLongPress`             | Fired after a long press on page in gallery. `(gestureState: object, index: number) => void` | `Function` | |
 | `onDoubleTapConfirmed` | Executed after a double tap. `(index: number) => void` **Version \*5.1.0 update**. | `Function` |
@@ -295,12 +312,9 @@ render() {
 
 Perform steps 1-2 to run locally:
 
-1. [Clone the Repo](#1-clone-the-repo)
-2. [Install and Run](#2-install-and-run)
-
-<br/>
-
-### :small_blue_diamond: 1. Clone the Repo
+<details>
+<summary>1. Clone the Repo</summary>
+</br>
 
 **Clone** `react-native-image-layout` locally. In a terminal, run:
 
@@ -308,9 +322,11 @@ Perform steps 1-2 to run locally:
 $ git clone https://github.com/Luehang/react-native-image-layout.git react-native-image-layout
 ```
 
-<br/>
+</details>
 
-### :small_blue_diamond: 2. Install and Run
+<details>
+<summary>2. Install and Run</summary>
+</br>
 
 ```bash
 $ cd react-native-image-layout/example/
@@ -328,6 +344,8 @@ $ cd react-native-image-layout/example/
 	2. npm install
 	3. emulator running in separate terminal
 	4. npm run android
+
+</details>
 
 <br/>
 <br/>
