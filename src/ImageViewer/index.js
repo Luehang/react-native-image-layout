@@ -55,6 +55,8 @@ export default class ImageViewer extends React.PureComponent {
     ]),
     onViewTransformed: PropTypes.func,
     onTransformGestureReleased: PropTypes.func,
+    onSwipeUpReleased: PropTypes.func,
+    onSwipeDownReleased: PropTypes.func,
     maxScale: PropTypes.bool,
     maxOverScrollDistance: PropTypes.number,
     enableVerticalExit: PropTypes.bool,
@@ -166,6 +168,14 @@ export default class ImageViewer extends React.PureComponent {
               this.props.onTransformGestureReleased(transform, i);
             }
           }}
+          onSwipeUpReleased={(transform, i) => {
+            this.props.onSwipeUpReleased &&
+              this.props.onSwipeUpReleased(transform, i);
+          }}
+          onSwipeDownReleased={(transform, i) => {
+            this.props.onSwipeDownReleased &&
+              this.props.onSwipeDownReleased(transform, i);
+          }}
           maxScale={this.props.maxScale}
           maxOverScrollDistance={this.props.maxOverScrollDistance}
           onEndReached={this.props.onEndReached}
@@ -253,6 +263,14 @@ export default class ImageViewer extends React.PureComponent {
             if (this.props.onTransformGestureReleased) {
               this.props.onTransformGestureReleased(transform, i);
             }
+          }}
+          onSwipeUpReleased={(transform, i) => {
+            this.props.onSwipeUpReleased &&
+              this.props.onSwipeUpReleased(transform, i);
+          }}
+          onSwipeDownReleased={(transform, i) => {
+            this.props.onSwipeDownReleased &&
+              this.props.onSwipeDownReleased(transform, i);
           }}
           maxScale={this.props.maxScale}
           maxOverScrollDistance={this.props.maxOverScrollDistance}
