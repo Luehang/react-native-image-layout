@@ -299,6 +299,8 @@ render() {
 | `resistantStrVertical` | Resistant value for top and bottom panning (view transformer). `(dy: number) => number` **Version \*5.1.0 update**. | `Function`, `number` or `string` | `(dy) => (dy /= 3)` |
 | `onViewTransformed` | Executed while being transformed in anyway (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*5.1.0 update**. | `Function` |
 | `onTransformGestureReleased` | Executed after a transform guesture released (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*5.1.0 update**. | `Function` |
+| `onSwipeUpReleased` | Executed after releasing an upward swipe at a specific y translate while not in zoom mode. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` For custom precision swiping gestures, refer to the `onTransformGestureReleased`. **Version \*5.8.0 update**. | `Function` |
+| `onSwipeDownReleased` | Executed after releasing a downward swipe at a specific y translate while not in zoom mode. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` For custom precision swiping gestures, refer to the `onTransformGestureReleased`. **Version \*5.8.0 update**. | `Function` |
 | `maxOverScrollDistance` | A number used to determine final scroll position triggered by fling (view transformer). **Version \*5.1.0 update**. | `number` | `20` |
 | `enableVerticalExit` | Enable or disable exiting from swiping up or down in gallery. **Version \*5.3.0 update**. | `Boolean` | `true` |
 
