@@ -241,24 +241,24 @@ render() {
 
 > If you like [`react-native-image-layout`](https://github.com/Luehang/react-native-image-layout), please be sure to give it a star at [GitHub](https://github.com/Luehang/react-native-image-layout). Thanks.
 
-| Props                         | Description                                                                                                                                                                                    | Type              | Default |
-|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
+| Props | Description | Type | Default |
+| ----- | ----------- | ---- | ------- |
 | `images`                      | An array of objects.  `uri` is a required field. EX. `[{uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg"}, {uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg"}]` | `Array` | Required |
-| `columns`                     | Desired number of columns. | `number` | 2 |
-| `initialColToRender`          | How many columns to render in the initial batch. | `number` | `columns` |
-| `initialNumInColsToRender`    | How many items to render in each column in the initial batch. | `number` | 1 |
-| `spacing`                     | Gutter size of the column. The spacing is a multiplier of 1% of the available view. | `number` | 1 |
-| `sorted`                      | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | `Boolean` | false |
-| `rerender`                    | Rerender the images when it changes. **Version \*5.2.0 update** | `boolean` | false |
-| `onLongPressImage`            | Executed after a long press on an item on the masonry. `({item: object, index: number}) => void` **Version \*3.0.0 update**. | `Function` | |
-| `imageContainerStyle`         | The styles object which is added to the Image component. | `object` | {} |
+| `columns`                       | Desired number of columns. | `number` | 2 |
+| `initialColToRender`            | How many columns to render in the initial batch. | `number` | `columns` |
+| `initialNumInColsToRender`      | How many items to render in each column in the initial batch. | `number` | 1 |
+| `spacing`                       | Gutter size of the column. The spacing is a multiplier of 1% of the available view. | `number` | 1 |
+| `sorted`                        | Whether to sort the masonry data according to their index position or allow to fill in as soon as the `uri` is ready. | `Boolean` | false |
+| `rerender`                      | Rerender the images when it changes. **Version \*5.2.0 update** | `boolean` | false |
+| `onLongPressImage`              | Executed after a long press on an item on the masonry. `({item: object, index: number}) => void` **Version \*3.0.0 update**. | `Function` | |
+| `imageContainerStyle`           | The styles object which is added to the Image component. | `object` | {} |
 | `renderIndividualMasonryHeader` | Custom function that is executed **ABOVE** each individual masonry image. `(item: object, index: number) => ?React.Element` | `Function` | |
 | `renderIndividualMasonryFooter` | Custom function that is executed **BELOW** each individual masonry image. `(item: object, index: number) => ?React.Element` | `Function` | |
 | `renderMainHeader`              | Custom function to render a header above the MasonryList. `() => void` | `Function` | |
 | `renderMainFooter`              | Custom function to render a footer below the MasonryList. `() => void` | `Function` | |
 | `masonryFlatListColProps`       | Props to be passed to the underlying `FlatList` masonry.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist#props) | `object` | {} |
-| `onEndReached`                | Called once when the scroll position gets within `onEndReachedThreshold` of the rendered content. `() => void` **Version \*5.7.0 update** | `function` | |
-| `onEndReachedThreshold`       | How far from the end (in units of visible length of the list) the bottom edge of the list must be from the end of the content to trigger the `onEndReached` callback. Thus a value of 0.5 will trigger `onEndReached` when the end of the content is within half the visible length of the list. **Version \*5.7.0 update** | `number` | 0.8 |
+| `onEndReached`                  | Called once when the scroll position gets within `onEndReachedThreshold` of the rendered content. `() => void` **Version \*5.7.0 update** | `function` | |
+| `onEndReachedThreshold`         | How far from the end (in units of visible length of the list) the bottom edge of the list must be from the end of the content to trigger the `onEndReached` callback. Thus a value of 0.5 will trigger `onEndReached` when the end of the content is within half the visible length of the list. **Version \*5.7.0 update** | `number` | 0.8 |
 
 <br/>
 <br/>
@@ -270,8 +270,8 @@ render() {
 
 > If you like [`react-native-image-layout`](https://github.com/Luehang/react-native-image-layout), please be sure to give it a star at [GitHub](https://github.com/Luehang/react-native-image-layout). Thanks.
 
-| Props                         | Description                                                                                                                                                                                    | Type              | Default |
-|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
+| Props | Description | Type | Default |
+| ----- | ----------- | ---- | ------- |
 | `imagePageComponent`          | Custom function to render the images for gallery.  `(imageProps: { imageLoaded: Boolean, source: object, image: object, style: Array<object>, resizeMode: string, capInsets: object, onLoadStart: Function, onLoad: Function, ...extras }, imageDimensions: {width: number, height: number}, index: number) => React.Element` **index params included in Version \*3.0.0 update** | `Function` | `<Image/>` component |
 | `errorPageComponent`          | Custom function to render the page of an image in gallery that couldn't be displayed. | `Function` | `<View/>` with stylized error |
 | `renderPageHeader`            | Custom function to render gallery page header.  `(item: object, index: number, onClose: Function) => ?React.Element` The `onClose` function is use to close gallery pages and return to the masonry layout. | `Function` | |
@@ -285,24 +285,25 @@ render() {
 | `pageScrollViewStyle`         | Custom style for the `FlatList` component for gallery. | `object` | {} |
 | `onPageSingleTapConfirmed`    | Fired after a single tap on page in gallery. `(index: number) => void` | `Function` | |
 | `onPageLongPress`             | Fired after a long press on page in gallery. `(gestureState: object, index: number) => void` | `Function` | |
-| `onDoubleTapConfirmed` | Executed after a double tap. `(index: number) => void` **Version \*5.1.0 update**. | `Function` |
-| `onDoubleTapStartReached` | Executed after scaling out or zooming out using double tap. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*5.1.0 update**. | `Function` |
-| `onDoubleTapEndReached` | Executed after scaling in or zooming in using double tap. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*5.1.0 update**. | `Function` |
-| `onPinchTransforming` | Executed while pinching to transform view or zoom (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*5.1.0 update**. | `Function` |
-| `onPinchStartReached` | Executed after scaling out or zooming out to initial size using the pinch gesture. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*5.1.0 update**. | `Function` |
-| `enableScale` | Enable or disable zoom and double tap zoom (view transformer). **Version \*5.1.0 update**. | `boolean` | `true` |
-| `maxScale` | Max zoom (view transformer). **Version \*5.1.0 update**. | `number` | `Math.max(imageWidth / viewWidth, imageHeight / viewHeight)` |
-| `enableTranslate` | Enable or disable moving while in zoom (view transformer). **Version \*5.1.0 update**. | `boolean` | `true` |
-| `resizeMode` | The mechanism that should be used to resize the image when the image's dimensions differ from the image view's dimensions. Expecting one of `"contain"`, `"cover"`, `"stretch"`, `"repeat"`, `"center"`. **Version \*5.1.0 update**. | `string` | `"contain"` |
-| `enableResistance` | Enable or disable resistance over panning (view transformer). **Version \*5.1.0 update**. | `boolean` | `true` |
-| `resistantStrHorizontal` | Resistant value for left and right panning (view transformer). `(dx: number) => number` **Version \*5.1.0 update**. | `Function`, `number` or `string` | `(dx) => (dx /= 3)` |
-| `resistantStrVertical` | Resistant value for top and bottom panning (view transformer). `(dy: number) => number` **Version \*5.1.0 update**. | `Function`, `number` or `string` | `(dy) => (dy /= 3)` |
-| `onViewTransformed` | Executed while being transformed in anyway (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*5.1.0 update**. | `Function` |
-| `onTransformGestureReleased` | Executed after a transform guesture released (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*5.1.0 update**. | `Function` |
-| `onSwipeUpReleased` | Executed after releasing an upward swipe at a specific y translate while not in zoom mode. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` For custom precision swiping gestures, refer to the `onTransformGestureReleased`. **Version \*5.8.0 update**. | `Function` |
-| `onSwipeDownReleased` | Executed after releasing a downward swipe at a specific y translate while not in zoom mode. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` For custom precision swiping gestures, refer to the `onTransformGestureReleased`. **Version \*5.8.0 update**. | `Function` |
-| `maxOverScrollDistance` | A number used to determine final scroll position triggered by fling (view transformer). **Version \*5.1.0 update**. | `number` | `20` |
-| `enableVerticalExit` | Enable or disable exiting from swiping up or down in gallery. **Version \*5.3.0 update**. | `Boolean` | `true` |
+| `onDoubleTapConfirmed`        | Executed after a double tap. `(index: number) => void` **Version \*5.1.0 update**. | `Function` |
+| `onDoubleTapStartReached`     | Executed after scaling out or zooming out using double tap. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*5.1.0 update**. | `Function` |
+| `onDoubleTapEndReached`       | Executed after scaling in or zooming in using double tap. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*5.1.0 update**. | `Function` |
+| `onPinchTransforming`         | Executed while pinching to transform view or zoom (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*5.1.0 update**. | `Function` |
+| `onPinchStartReached`         | Executed after scaling out or zooming out to initial size using the pinch gesture. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*5.1.0 update**. | `Function` |
+| `enableScale`                 | Enable or disable zoom and double tap zoom (view transformer). **Version \*5.1.0 update**. | `boolean` | `true` |
+| `maxScale`                    | Max zoom (view transformer). **Version \*5.1.0 update**. | `number` | `Math.max(imageWidth / viewWidth, imageHeight / viewHeight)` |
+| `enableTranslate`             | Enable or disable moving while in zoom (view transformer). **Version \*5.1.0 update**. | `boolean` | `true` |
+| `resizeMode`                  | The mechanism that should be used to resize the image when the image's dimensions differ from the image view's dimensions. Expecting one of `"contain"`, `"cover"`, `"stretch"`, `"repeat"`, `"center"`. **Version \*5.1.0 update**. | `string` | `"contain"` |
+| `enableResistance`            | Enable or disable resistance over panning (view transformer). **Version \*5.1.0 update**. | `boolean` | `true` |
+| `resistantStrHorizontal`      | Resistant value for left and right panning (view transformer). `(dx: number) => number` **Version \*5.1.0 update**. | `Function`, `number` or `string` | `(dx) => (dx /= 3)` |
+| `resistantStrVertical`        | Resistant value for top and bottom panning (view transformer). `(dy: number) => number` **Version \*5.1.0 update**. | `Function`, `number` or `string` | `(dy) => (dy /= 3)` |
+| `onViewTransformed`           | Executed while being transformed in anyway (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*5.1.0 update**. | `Function` |
+| `onTransformGestureReleased`  | Executed after a transform guesture released (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*5.1.0 update**. | `Function` |
+| `onSwipeUpReleased`           | Executed after releasing an upward swipe at a specific y translate while not in zoom mode. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` For custom precision swiping gestures, refer to the `onTransformGestureReleased`. **Version \*5.8.0 update**. | `Function` |
+| `onSwipeDownReleased`         | Executed after releasing a downward swipe at a specific y translate while not in zoom mode. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` For custom precision swiping gestures, refer to the `onTransformGestureReleased`. **Version \*5.8.0 update**. | `Function` |
+| `maxOverScrollDistance`       | A number used to determine final scroll position triggered by fling (view transformer). **Version \*5.1.0 update**. | `number` | `20` |
+| `enableVerticalExit`          | Enable or disable exiting from swiping up or down in gallery. **Version \*5.3.0 update**. | `Boolean` | `true` |
+| `enableModal`                 | Enable or disable modal for gallery. This also helps with Androids back button. **Version \*5.9.0 update**. | `boolean` | `false` |
 
 <br/>
 <br/>
