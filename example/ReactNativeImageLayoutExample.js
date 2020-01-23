@@ -13,6 +13,7 @@ import ImageLayout from "react-native-image-layout";
 // import ImageLayout from "./src"
 
 import testData from "./data";
+import fetchData from "./data-fetch";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
@@ -21,6 +22,8 @@ const platform = Platform.OS;
 const backIcon = require("./assets/arrow_back_ios_white_36dp.png");
 
 export default class ReactNativeImageLayoutExample extends Component {
+    fetchTotal = 0;
+
     state = {
         data: testData
     }
@@ -87,6 +90,13 @@ export default class ReactNativeImageLayoutExample extends Component {
                         );
                     }}
                     images={this.state.data}
+                    onEndReached={() => {
+                        if (this.fetchTotal === 0) {
+                            // console.log("onEndReached");
+                            this.setState({data: this.state.data.concat(fetchData)});
+                            this.fetchTotal++;
+                        }
+                    }}
                     // renderIndividualMasonryHeader={(data, index) => {
                     //     return (
                     //         <TouchableWithoutFeedback
@@ -161,7 +171,11 @@ const styles = StyleSheet.create({
     // },
     pageHeader: {
         flexDirection: "row",
-        alignItems: "center"
+        alignItems: "center",
+        top: 0,
+        width: "100%",
+        position: "absolute",
+        zIndex: 1000
     },
     title: {
         fontSize: 25
