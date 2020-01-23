@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native";
 import PropTypes from "prop-types";
 
 export default class PageHeader extends React.PureComponent {
@@ -14,10 +13,6 @@ export default class PageHeader extends React.PureComponent {
         const { renderPageHeader, image, galleryIndex, onClose } = this.props;
         const header = renderPageHeader &&
             renderPageHeader(image, galleryIndex, onClose);
-        return (
-            <View style={{ top: 0, width: "100%", position: "absolute", zIndex: 1000 }}>
-                { header }
-            </View>
-        );
+        return header;
     }
 }
