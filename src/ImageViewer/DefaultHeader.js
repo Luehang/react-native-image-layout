@@ -19,27 +19,30 @@ export default class DefaultHeader extends React.PureComponent {
     render() {
         const { onClose } = this.props;
         return (
-            <View style={{ top: 0, width: "100%", position: "absolute", zIndex: 1000 }}>
-                <View style={[styles.statusBarTop, styles.header, styles.pageHeader]}>
-                    <TouchableWithoutFeedback onPress={() => onClose()}>
-                        <Image source={backIcon} style={{marginLeft: 10, height: 30, width: 30}} />
-                    </TouchableWithoutFeedback>
-                </View>
+            <View style={styles.header}>
+                <TouchableWithoutFeedback onPress={() => onClose()}>
+                    <Image source={backIcon} style={styles.backIcon} />
+                </TouchableWithoutFeedback>
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    statusBarTop: {
-        paddingTop: isIPhoneX() ? 30 : Platform.OS === "ios" ? 20 : 0
-    },
     header: {
+        top: 0,
+        width: "100%",
+        position: "absolute",
+        zIndex: 1000,
+        paddingTop: isIPhoneX() ? 30 : Platform.OS === "ios" ? 20 : 0,
         height: isIPhoneX() ? 88 : 64,
-        backgroundColor: "transparent"
-    },
-    pageHeader: {
+        backgroundColor: "transparent",
         flexDirection: "row",
         alignItems: "center"
+    },
+    backIcon: {
+        marginLeft: 10,
+        height: 30,
+        width: 30
     }
 });
