@@ -72,7 +72,8 @@ class ImageLayout extends React.PureComponent {
     onSwipeDownReleased: PropTypes.func,
     maxScale: PropTypes.bool,
     maxOverScrollDistance: PropTypes.number,
-    enableVerticalExit: PropTypes.bool
+    enableVerticalExit: PropTypes.bool,
+    enableModal: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -85,7 +86,8 @@ class ImageLayout extends React.PureComponent {
 		imageContainerStyle: {},
     onEndReachedThreshold: 0.8,
     sensitivePageScroll: false,
-    enableVerticalExit: true
+    enableVerticalExit: true,
+    enableModal: false
   }
 
   constructor(props) {
@@ -119,6 +121,21 @@ class ImageLayout extends React.PureComponent {
   }
 
   render() {
+    let Injectant;
+    const injectantProps = {};
+    if (this.props.enableModal) {
+      Injectant = Modal;
+      injectantProps.visible = this.state.displayImageViewer &&
+        this.state.imageId ? true : false;
+      injectantProps.transparent = true;
+      injectantProps.animationType = Platform.OS === "ios" ? "none" : "fade";
+      injectantProps.hardwareAccelerated = true;
+      injectantProps.onRequestClose = this.closeImageViewer;
+    } else {
+      Injectant = View;
+      injectantProps.style = { position: "absolute" };
+    }
+
     return (
       <View style={{flex: 1}} {...this.props}>
         {
@@ -165,11 +182,8 @@ class ImageLayout extends React.PureComponent {
         {this.state.displayImageViewer &&
           this.state.imageId ?
           (
-            <Modal
-              visible={this.state.displayImageViewer && this.state.imageId ? true : false}
-              transparent={true}
-              animationType={Platform.OS === "ios" ? "none" : "fade"}
-              onRequestClose={this.closeImageViewer}>
+            <Injectant
+                {...injectantProps}>
               <ImageViewer
                 images={this.state.resolvedData}
                 imageId={this.state.imageId}
@@ -211,10 +225,11 @@ class ImageLayout extends React.PureComponent {
                 maxScale={this.props.maxScale}
                 maxOverScrollDistance={this.props.maxOverScrollDistance}
                 enableVerticalExit={this.props.enableVerticalExit}
+                enableModal={this.props.enableModal}
                 onEndReached={this.props.onEndReached}
                 onEndReachedThreshold={this.props.onEndReachedThreshold}
               />
-            </Modal>
+            </Injectant>
           ) : null}
       </View>
     );
