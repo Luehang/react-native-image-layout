@@ -70,7 +70,7 @@ class ImageLayout extends React.PureComponent {
     onTransformGestureReleased: PropTypes.func,
     onSwipeUpReleased: PropTypes.func,
     onSwipeDownReleased: PropTypes.func,
-    maxScale: PropTypes.bool,
+    maxScale: PropTypes.number,
     maxOverScrollDistance: PropTypes.number,
     enableVerticalExit: PropTypes.bool,
     enableModal: PropTypes.bool,
